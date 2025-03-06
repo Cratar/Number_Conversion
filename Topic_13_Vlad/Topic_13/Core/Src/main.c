@@ -93,9 +93,18 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+
   while (1)
   {
+	  
+	  
     /* USER CODE END WHILE */
+
+	  TestBooton();
+	  Test_4_LED();
+	  Test_12_LED();
+	  test(100);
 
     /* USER CODE BEGIN 3 */
   }

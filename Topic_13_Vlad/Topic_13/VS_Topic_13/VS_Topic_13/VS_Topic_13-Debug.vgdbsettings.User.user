@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<VisualGDBUserPreferences xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <UserDefinedVariableValues />
+  <DebugPreferences xsi:type="com.visualgdb.debug.embedded.preferences">
+    <CatchpointConfiguration>
+      <Exec>false</Exec>
+      <Fork>false</Fork>
+      <Vfork>false</Vfork>
+      <Syscalls />
+      <CXXCatchpoints />
+    </CatchpointConfiguration>
+    <VisualWatchPreferences />
+    <MaskInterruptsWhileStepping>false</MaskInterruptsWhileStepping>
+    <MemoryWindowPreferences />
+    <c>
+      <oo>
+        <a>flag1</a>
+        <h>com.sysprogs.types.builtin.HexInt8</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>true</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>flag2</a>
+        <h>com.sysprogs.types.builtin.HexInt8</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>true</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>flag3</a>
+        <h>com.sysprogs.types.builtin.HexInt8</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>true</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>flag4</a>
+        <h>com.sysprogs.types.builtin.HexInt8</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>true</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>flag5</a>
+        <h>com.sysprogs.types.builtin.HexInt8</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>true</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+    </c>
+    <a>
+      <d>
+        <b>com.sysprogs.AllGlobals</b>
+        <a />
+      </d>
+      <d>
+        <b>com.sysprogs.SpecificVariables</b>
+        <a />
+      </d>
+      <d>
+        <b>com.sysprogs.Custom</b>
+        <a />
+      </d>
+    </a>
+    <e>
+      <a>SpecificVariables</a>
+      <b>false</b>
+    </e>
+    <Suggestions />
+    <HardwareRegisters />
+  </DebugPreferences>
+</VisualGDBUserPreferences>

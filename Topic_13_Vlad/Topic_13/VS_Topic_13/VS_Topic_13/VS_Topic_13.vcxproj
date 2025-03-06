@@ -76,6 +76,7 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Core\Src\7_3_LED.c" />
     <ClCompile Include="..\..\Core\Src\stm32f1xx_it.c" />
     <ClCompile Include="..\..\Core\Src\stm32f1xx_hal_msp.c" />
     <ClCompile Include="..\..\Core\Src\main.c" />
@@ -94,6 +95,7 @@
     <ClCompile Include="..\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio.c" />
     <None Include="stm32.props" />
     <ClCompile Include="$(BSP_ROOT)\STM32F1xxxx\StartupFiles\startup_stm32f103xb.c" />
+    <ClInclude Include="..\..\Core\Inc\7_3_LED.h" />
     <ClInclude Include="..\..\Core\Inc\stm32f1xx_it.h" />
     <ClInclude Include="..\..\Core\Inc\stm32f1xx_hal_conf.h" />
     <ClInclude Include="..\..\Core\Inc\main.h" />
