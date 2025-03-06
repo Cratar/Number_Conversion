@@ -87,24 +87,27 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+	
   /* USER CODE BEGIN 2 */
-
+	
+    test(100); //Самоиндикация экрана
+	
+	Test_4_LED(250); //Самоиндикация 4 лампочек
+	
+	Test_12_LED(250); //Самоиндикация 12 лампочек
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-
+    
   while (1)
   {
 	  
 	  
     /* USER CODE END WHILE */
 
-	  TestBooton();
-	  Test_4_LED();
-	  Test_12_LED();
-	  test(100);
 
     /* USER CODE BEGIN 3 */
   }

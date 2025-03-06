@@ -8,215 +8,265 @@
 #ifndef __7_3_LED_ENABLED
 
 // Временные функции удалить ---------------------------------
+bool flag0 = false;
 bool flag1 = false;
 bool flag2 = false;
 bool flag3 = false;
 bool flag4 = false;
-bool flag5 = false;
 
-// Перебрать распиновку 
+// Удалить 
 void TestBooton()
 {
 
 	// Читаем состояния кнопок
-	flag1 = (HAL_GPIO_ReadPin(GPIOC, BUTTON_3) == GPIO_PIN_RESET);
-	flag2 = (HAL_GPIO_ReadPin(GPIOC, BUTTON_4) == GPIO_PIN_RESET);
-	flag3 = (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == GPIO_PIN_RESET);
-	flag4 = (HAL_GPIO_ReadPin(GPIOA, BUTTON_1) == GPIO_PIN_RESET);
-	flag5 = (HAL_GPIO_ReadPin(GPIOA, BUTTON_2) == GPIO_PIN_RESET);
+	flag3 = (HAL_GPIO_ReadPin(GPIOC, BUTTON_3) == GPIO_PIN_RESET);
+	flag4 = (HAL_GPIO_ReadPin(GPIOC, BUTTON_4) == GPIO_PIN_RESET);
+	flag0 = (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == GPIO_PIN_RESET);
+	flag1 = (HAL_GPIO_ReadPin(GPIOA, BUTTON_1) == GPIO_PIN_RESET);
+	flag2 = (HAL_GPIO_ReadPin(GPIOA, BUTTON_2) == GPIO_PIN_RESET);
 
-	// Здесь можно выполнить действия, если все кнопки нажаты
-	if (flag1 && flag2 && flag3 && flag4 && flag5)
-	{
-		// Например, включить светодиод или отправить сообщение
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
-	}
-	else
-	{
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
-	}
 
 	// Небольшая задержка для устранения дребезга
 	HAL_Delay(50);
 }
 
+//-------------------------------------------
 
-// Перебрать распиновку 
-void Test_4_LED()
+void Test_4_LED(uint16_t delay)
 {
-	HAL_GPIO_WritePin(GPIOB, S_0_1 | S_0_2 | S_0_3, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOC, S_0_4, GPIO_PIN_SET);
-	HAL_Delay(50);
-	  
-	HAL_GPIO_WritePin(GPIOB, S_0_1 | S_0_2 | S_0_3, GPIO_PIN_RESET);
+	// 1 Лампачка 
+	HAL_GPIO_WritePin(GPIOB, S_0_1, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, S_0_1 , GPIO_PIN_SET);
+	HAL_Delay(delay);
+	
+	// 2 Лампачка 
+	HAL_GPIO_WritePin(GPIOB, S_0_2, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, S_0_2 , GPIO_PIN_SET);
+	HAL_Delay(delay);
+	
+	// 3 Лампачка 
+	HAL_GPIO_WritePin(GPIOB, S_0_3, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, S_0_3, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	
+	// 4 Лампачка 
 	HAL_GPIO_WritePin(GPIOC, S_0_4, GPIO_PIN_RESET);
-	HAL_Delay(50);
+	HAL_GPIO_WritePin(GPIOC, S_0_4, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	
+	// Сброс света
+	HAL_GPIO_WritePin(GPIOB, S_0_1| S_0_2| S_0_3, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOC,  S_0_4, GPIO_PIN_RESET);
+
+	HAL_Delay(delay);
+
 }
 
-// Перебрать распиновку 
-void Test_12_LED()
+void Test_12_LED(uint16_t delay)
 {
-	HAL_GPIO_WritePin(GPIOB, S1 | S2 | S3 | S4 | S5 | S6 | S7 | S8 | S9 | S10 | S11 | S12 , GPIO_PIN_SET);
-	HAL_Delay(50);
+    // 1 лампачка
+	HAL_GPIO_WritePin(GPIOB, S1, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOB, S1, GPIO_PIN_RESET);
+	// 2 лампачка
+	HAL_GPIO_WritePin(GPIOB, S2, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOB, S2, GPIO_PIN_RESET);
+	// 3 лампачка
+	HAL_GPIO_WritePin(GPIOB, S3, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOB, S3, GPIO_PIN_RESET);
+	// 4 лампачка
+	HAL_GPIO_WritePin(GPIOB, S4, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOB, S4, GPIO_PIN_RESET);
+	// 5 лампачка
+	HAL_GPIO_WritePin(GPIOB, S5, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOB, S5, GPIO_PIN_RESET);
+	// 6 лампачка
+	HAL_GPIO_WritePin(GPIOB, S6, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOB, S6, GPIO_PIN_RESET);
+	// 7 лампачка
+	HAL_GPIO_WritePin(GPIOB, S7, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOB, S7, GPIO_PIN_RESET);
+	// 8 лампачка
+	HAL_GPIO_WritePin(GPIOB, S8, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOB, S8, GPIO_PIN_RESET);
+	// 9 лампачка
+	HAL_GPIO_WritePin(GPIOB, S9, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOB, S9, GPIO_PIN_RESET);
+	// 10 лампачка
+	HAL_GPIO_WritePin(GPIOB, S10, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOB, S10, GPIO_PIN_RESET);
+	// 11 лампачка
+	HAL_GPIO_WritePin(GPIOB, S11, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOB, S11, GPIO_PIN_RESET);
+	// 12 лампачка
+	HAL_GPIO_WritePin(GPIOB, S12, GPIO_PIN_SET);
+	HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOB, S12, GPIO_PIN_RESET);
 	
-	  
-	HAL_GPIO_WritePin(GPIOB, S1 | S2 | S3 | S4 | S5 | S6 | S7 | S8 | S9 | S10 | S11 | S12, GPIO_PIN_RESET);
-	HAL_Delay(50);
 }
-//------------------------------------
 
-void test(int delay){
+void test(uint16_t delay) {
 	//----------------------------Общая проверка экрана------------------------------------------\\
-    HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3 |  , GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOA, D7_1 , GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3 |, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOA, D7_1, GPIO_PIN_RESET);
 	
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D|E | F | DP , GPIO_PIN_SET);// 0
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | E | F | DP, GPIO_PIN_SET); // 0
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOA, B | C , GPIO_PIN_SET); // 1
-    HAL_Delay(delay);//пауза
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, B | C, GPIO_PIN_SET); // 1
+	HAL_Delay(delay); //пауза
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);// выкл
-    HAL_GPIO_WritePin(GPIOA, A | B | G |E |D | DP, GPIO_PIN_SET);// 2
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET); // выкл
+	HAL_GPIO_WritePin(GPIOA, A | B | G | E | D | DP, GPIO_PIN_SET); // 2
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A | B | G |C |D | DP, GPIO_PIN_SET);// 3 
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | B | G | C | D | DP, GPIO_PIN_SET); // 3 
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, F| B | G |C, GPIO_PIN_SET);// 4
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, F | B | G | C, GPIO_PIN_SET); // 4
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A |F | G | C | D | DP, GPIO_PIN_SET);// 5
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | F | G | C | D | DP, GPIO_PIN_SET); // 5
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A |F | G | E | C | D, GPIO_PIN_SET);// 6
-    HAL_Delay(delay);
-  
-  
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A | B | C  | DP, GPIO_PIN_SET);// 7
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | F | G | E | C | D, GPIO_PIN_SET); // 6
+	HAL_Delay(delay);
   
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F , GPIO_PIN_SET);// 8
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | B | C  | DP, GPIO_PIN_SET); // 7
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G | F  | DP , GPIO_PIN_SET);// 9
-    HAL_Delay(delay);
+  
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F, GPIO_PIN_SET); // 8
+	HAL_Delay(delay);
+  
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | F  | DP, GPIO_PIN_SET); // 9
+	HAL_Delay(delay);
 	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
 
 
 	
-//	//----------------------------DIG1------------------------------------------\\
-//
-    HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3 , GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOA, D7_1 , GPIO_PIN_RESET);
+	//	//----------------------------DIG1------------------------------------------\\
+	//
+	HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOA, D7_1, GPIO_PIN_RESET);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D|E | F , GPIO_PIN_SET);// 0
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | E | F, GPIO_PIN_SET); // 0
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, B|C, GPIO_PIN_SET); // 1
-    HAL_Delay(delay);//пауза
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, B | C, GPIO_PIN_SET); // 1
+	HAL_Delay(delay); //пауза
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);// выкл
-    HAL_GPIO_WritePin(GPIOA, A | B | G |E |D, GPIO_PIN_SET);// 2
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET); // выкл
+	HAL_GPIO_WritePin(GPIOA, A | B | G | E | D, GPIO_PIN_SET); // 2
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A | B | G |C |D, GPIO_PIN_SET);// 3 
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | B | G | C | D, GPIO_PIN_SET); // 3 
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, F| B | G |C, GPIO_PIN_SET);// 4
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, F | B | G | C, GPIO_PIN_SET); // 4
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A |F | G | C | D, GPIO_PIN_SET);// 5
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | F | G | C | D, GPIO_PIN_SET); // 5
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A |F | G | E | C | D, GPIO_PIN_SET);// 6
-    HAL_Delay(delay);
-  
-  
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A | B | C , GPIO_PIN_SET);// 7
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | F | G | E | C | D, GPIO_PIN_SET); // 6
+	HAL_Delay(delay);
   
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F , GPIO_PIN_SET);// 8
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | B | C, GPIO_PIN_SET); // 7
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G | F , GPIO_PIN_SET);// 9
-    HAL_Delay(delay);
+  
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F, GPIO_PIN_SET); // 8
+	HAL_Delay(delay);
+  
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | F, GPIO_PIN_SET); // 9
+	HAL_Delay(delay);
 	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
 
 	
   
-////	//----------------------------DIG2------------------------------------------\\
-//
-    HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3 , GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOA, D7_2, GPIO_PIN_RESET);
+	////	//----------------------------DIG2------------------------------------------\\
+	//
+	HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOA, D7_2, GPIO_PIN_RESET);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D|E | F , GPIO_PIN_SET);// 0
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | E | F, GPIO_PIN_SET); // 0
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, B|C, GPIO_PIN_SET); // 1
-    HAL_Delay(delay);//пауза
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, B | C, GPIO_PIN_SET); // 1
+	HAL_Delay(delay); //пауза
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);// выкл
-    HAL_GPIO_WritePin(GPIOA, A | B | G |E |D, GPIO_PIN_SET);// 2
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET); // выкл
+	HAL_GPIO_WritePin(GPIOA, A | B | G | E | D, GPIO_PIN_SET); // 2
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A | B | G |C |D, GPIO_PIN_SET);// 3 
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | B | G | C | D, GPIO_PIN_SET); // 3 
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, F| B | G |C, GPIO_PIN_SET);// 4
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, F | B | G | C, GPIO_PIN_SET); // 4
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A |F | G | C | D, GPIO_PIN_SET);// 5
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | F | G | C | D, GPIO_PIN_SET); // 5
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A |F | G | E | C | D, GPIO_PIN_SET);// 6
-    HAL_Delay(delay);
-  
-  
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A | B | C , GPIO_PIN_SET);// 7
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | F | G | E | C | D, GPIO_PIN_SET); // 6
+	HAL_Delay(delay);
   
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F , GPIO_PIN_SET);// 8
-    HAL_Delay(delay);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | B | C, GPIO_PIN_SET); // 7
+	HAL_Delay(delay);
   
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, A | B | C | D| G | F , GPIO_PIN_SET);// 9
-    HAL_Delay(delay);
+  
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F, GPIO_PIN_SET); // 8
+	HAL_Delay(delay);
+  
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | F, GPIO_PIN_SET); // 9
+	HAL_Delay(delay);
 	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
 
 	
-//	//----------------------------DIG3------------------------------------------\\
-	HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3  , GPIO_PIN_SET);
+	//	//----------------------------DIG3------------------------------------------\\
+	HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(GPIOA, D7_3, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3  , GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(GPIOA, D7_3, GPIO_PIN_RESET);
 
 	HAL_GPIO_WritePin(GPIOA, A | B | C | D | E | F, GPIO_PIN_SET); // 0
@@ -262,14 +312,18 @@ void test(int delay){
 	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
 
 	
-    //--------------------Выключаем все дисплеи и цифры-------------\\
+	//--------------------Выключаем все дисплеи и цифры-------------\\
 	
-	HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3 , GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
 
 
 
 }
+
+//------------------------------------
+
+
 
 void set_number(int n){ 
     HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);

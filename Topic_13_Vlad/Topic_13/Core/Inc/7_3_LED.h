@@ -3,6 +3,7 @@
 #define __7_3_LED_H
 #include "stm32f1xx_it.h"
 #include "stdbool.h"
+#include "main.h"
 
 #define A GPIO_PIN_10
 #define B GPIO_PIN_6
@@ -46,25 +47,22 @@
 
 extern const int InputTime;
 
-void test(int delay);                           // самоконтроль
+void test(uint16_t delay); // самоконтроль
 void set_number(int n);                         // вывод цифры
 void set_dig(int n);                            // установка DIG
 void set_n_dig(int dig1, int dig2, int dig3, int dig4); // установка DIG1,DIG2,DIG3
 void print_number(int n); // печать числа
 
 
-
-
-//Временные функции-----------------
-
+// Удалить
 void TestBooton();
-void Test_4_LED();
-void Test_4_LED();
-void Test_12_LED();
+
+//------------------------------
+void Test_4_LED(uint16_t delay);
+void Test_12_LED(uint16_t delay);
 //--------------------------------------------
 
-//
-////------------------------------/-\-----Мои функции -------/-\---------\\
+
 //
 ////Объявляем функцию - Считает количество нажатий на кнопку( за условные 4 сек)
 //

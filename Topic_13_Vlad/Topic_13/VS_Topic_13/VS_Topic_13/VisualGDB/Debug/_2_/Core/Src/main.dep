@@ -31,7 +31,8 @@ VisualGDB/Debug/_2_/Core/Src/main.o: \
  ../../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  ../../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../../Core/Inc/7_3_LED.h ../../Core/Inc/stm32f1xx_it.h \
- C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdbool.h
+ C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdbool.h \
+ ../../Core/Inc/main.h
 ../../Core/Inc/main.h:
 ../../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../../Core/Inc/stm32f1xx_hal_conf.h:
@@ -65,3 +66,4 @@ C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stddef.h:
 ../../Core/Inc/7_3_LED.h:
 ../../Core/Inc/stm32f1xx_it.h:
 C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdbool.h:
+../../Core/Inc/main.h:
