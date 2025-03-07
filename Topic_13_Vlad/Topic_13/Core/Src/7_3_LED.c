@@ -325,7 +325,7 @@ void test(uint16_t delay) {
 
 //------------------------------------
 
-void Set_LED_12_Bit(uint64_t *binaryNums, uint16_t countNums)
+void Set_LED_12_Bit(uint64_t *binaryNums)
 {
 	uint16_t pins[] = { S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12 }; // GPIO пины для лампочек
 	uint64_t tempNums = *binaryNums;
@@ -341,25 +341,25 @@ void Set_LED_12_Bit(uint64_t *binaryNums, uint16_t countNums)
 			HAL_GPIO_WritePin(GPIOB, pins[i], GPIO_PIN_RESET);
 		}
 		tempNums /= 10; // Переход к следующей цифре
-		SetNumberBin(countNums, binaryNums);
 
 	}
 
 }
 
 
-void Set_4_Bit_Binary_Nums(uint64_t *binaryNums, uint8_t firstBit, uint8_t secondBit, uint8_t thirdBit, uint8_t fourthBit) 
+void SetLast_4_Bit(uint64_t *binaryNums, uint8_t *firstBit, uint8_t *secondBit, uint8_t *thirdBit, uint8_t *fourthBit)
 {
-	// Очищаем последние 5 цифр в binaryNums
-	*binaryNums /= 100000; // Убираем последние 5 цифр
+	
+	// Убираем последние 4 цифры
+	*binaryNums /= 10000; 
 
-	// Добавляем новые 4 бита
-	uint64_t newBits = (firstBit * 1000) + (secondBit * 100) + (thirdBit * 10) + fourthBit;
-
-	// Обновляем binaryNums
-	*binaryNums = (*binaryNums * 10000) + newBits;
+	// Добавляем новые 4 цифры
+	*binaryNums = (*binaryNums * 10000) + (*firstBit * 1000) + (*secondBit * 100) + (*thirdBit * 10) + *fourthBit;
 }
 
+
+
+//------------------------Перевод чисел--------------------
 											//Передаем не число а указатель на место хранения числа 
 void SetBinNumber(uint16_t countNums, uint64_t *binaryNums)
 {
@@ -393,6 +393,8 @@ void SetNumberBin(uint16_t countNums, uint64_t *binaryNums)
 
 	*binaryNums = countNums; // Обновляем значение
 }
+//---------------------------------------
+
 
 
 //------------------------

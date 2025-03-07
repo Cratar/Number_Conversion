@@ -147,9 +147,16 @@ int main(void)
 	 
 	  // Задаем 4 бит и зажигаем 4 лампачку с помощью BUTTON_4
 	  SetFourthBit(&fourthBit);
-	     
 	  
-	  Set_LED_12_Bit(&binaryNums  ,countNums);
+	  if (firstBit != 0 || secondBit != 0 || thirdBit != 0 || fourthBit != 0)
+	  {
+		  SetLast_4_Bit(&binaryNums, &firstBit, &secondBit, &thirdBit,&fourthBit);
+
+	  }
+	  
+	  Set_LED_12_Bit(&binaryNums);
+	  
+	  
 	  
     /* USER CODE BEGIN 3 */
   }
