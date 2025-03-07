@@ -61,6 +61,7 @@ void set_n_dig(int dig1, int dig2, int dig3, int dig4); // установка DI
 void print_number(int n); // печать числа
 
 
+
 // Удалить
 void TestBooton();
 
@@ -70,7 +71,11 @@ void Test_12_LED(uint16_t delay);
 //--------------------------------------------
 void SetBinNumber(uint16_t countNums, uint64_t *binaryNums);
 
+void Set_LED_12_Bit(uint64_t *binaryNums, uint16_t countNums);
 
+void Set_4_Bit_Binary_Nums(uint64_t *binaryNums, uint8_t firstBit, uint8_t secondBit, uint8_t thirdBit, uint8_t fourthBit);
+
+void SetNumberBin(uint16_t countNums, uint64_t *binaryNums);
 
 //----------------------------------- Набирам нужные 4 бита 
 void SetFirstBit(uint8_t *firstBit);

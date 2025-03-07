@@ -26,53 +26,6 @@
         <g>false</g>
       </oo>
       <oo>
-        <a>countNums</a>
-        <h>com.sysprogs.types.builtin.UInt16</h>
-        <e>true</e>
-        <b>
-          <ComparisonMode>Equals</ComparisonMode>
-          <Enabled>false</Enabled>
-        </b>
-        <c>false</c>
-        <d>false</d>
-        <g>false</g>
-      </oo>
-      <oo>
-        <a>tempNumber</a>
-        <h>com.sysprogs.types.builtin.UInt64</h>
-        <e>true</e>
-        <b>
-          <ComparisonMode>Equals</ComparisonMode>
-          <Enabled>false</Enabled>
-        </b>
-        <c>false</c>
-        <d>false</d>
-        <g>false</g>
-      </oo>
-      <oo>
-        <a>multiplier</a>
-        <h>com.sysprogs.types.builtin.UInt64</h>
-        <e>true</e>
-        <b>
-          <ComparisonMode>Equals</ComparisonMode>
-          <Enabled>false</Enabled>
-        </b>
-        <c>false</c>
-        <d>false</d>
-        <g>false</g>
-      </oo>
-      <oo>
-        <a>bit</a>
-        <e>true</e>
-        <b>
-          <ComparisonMode>Equals</ComparisonMode>
-          <Enabled>false</Enabled>
-        </b>
-        <c>false</c>
-        <d>false</d>
-        <g>false</g>
-      </oo>
-      <oo>
         <a>*binaryNums</a>
         <h>com.sysprogs.types.builtin.UInt64</h>
         <e>true</e>

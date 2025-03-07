@@ -3,13 +3,13 @@
   "WorkspaceRootPath": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\VS_Topic_13\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9E603E3C-EB6A-4E61-B503-87AA4D43F824}|VS_Topic_13\\VS_Topic_13.vcxproj|D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Src\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9E603E3C-EB6A-4E61-B503-87AA4D43F824}|VS_Topic_13\\VS_Topic_13.vcxproj|D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Inc\\7_3_LED.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9E603E3C-EB6A-4E61-B503-87AA4D43F824}|VS_Topic_13\\VS_Topic_13.vcxproj|D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Src\\7_3_LED.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E603E3C-EB6A-4E61-B503-87AA4D43F824}|VS_Topic_13\\VS_Topic_13.vcxproj|D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Src\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9E603E3C-EB6A-4E61-B503-87AA4D43F824}|VS_Topic_13\\VS_Topic_13.vcxproj|D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Inc\\main.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,46 +38,46 @@
               "RelativeToolTip": "..\\Core\\Inc\\main.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-07T06:40:11.473Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "main.c",
-              "DocumentMoniker": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Src\\main.c",
-              "RelativeDocumentMoniker": "..\\Core\\Src\\main.c",
-              "ToolTip": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Src\\main.c",
-              "RelativeToolTip": "..\\Core\\Src\\main.c",
-              "ViewState": "AgIAAGgAAAAAAAAAAAAAwHMAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-03-07T06:40:08.571Z",
+              "WhenOpened": "2025-03-07T10:25:24.169Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "7_3_LED.h",
-              "DocumentMoniker": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Inc\\7_3_LED.h",
-              "RelativeDocumentMoniker": "..\\Core\\Inc\\7_3_LED.h",
-              "ToolTip": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Inc\\7_3_LED.h",
-              "RelativeToolTip": "..\\Core\\Inc\\7_3_LED.h",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAqwFIAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-07T06:40:10.749Z",
+              "Title": "main.c",
+              "DocumentMoniker": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Src\\main.c",
+              "RelativeDocumentMoniker": "..\\Core\\Src\\main.c",
+              "ToolTip": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Src\\main.c",
+              "RelativeToolTip": "..\\Core\\Src\\main.c",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAIwJYAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-03-07T10:25:19.861Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "7_3_LED.h",
+              "DocumentMoniker": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Inc\\7_3_LED.h",
+              "RelativeDocumentMoniker": "..\\Core\\Inc\\7_3_LED.h",
+              "ToolTip": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Inc\\7_3_LED.h",
+              "RelativeToolTip": "..\\Core\\Inc\\7_3_LED.h",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAYwEkAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-07T10:25:23.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "7_3_LED.c",
               "DocumentMoniker": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Src\\7_3_LED.c",
               "RelativeDocumentMoniker": "..\\Core\\Src\\7_3_LED.c",
               "ToolTip": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Src\\7_3_LED.c",
               "RelativeToolTip": "..\\Core\\Src\\7_3_LED.c",
-              "ViewState": "AgIAAAwAAAAAAAAAAAA2wHgBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEUBAAAAAAAAAAAAwEcBAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-03-07T06:40:07.281Z",
+              "WhenOpened": "2025-03-07T10:25:18.538Z",
               "EditorCaption": ""
             }
           ]

@@ -325,6 +325,40 @@ void test(uint16_t delay) {
 
 //------------------------------------
 
+void Set_LED_12_Bit(uint64_t *binaryNums, uint16_t countNums)
+{
+	uint16_t pins[] = { S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12 }; // GPIO пины для лампочек
+	uint64_t tempNums = *binaryNums;
+    
+	for (int i = 11; i >= 0; --i) // Перебираем массив с конца
+	{
+		if (tempNums % 10 == 1) 
+		{
+			HAL_GPIO_WritePin(GPIOB, pins[i], GPIO_PIN_SET);
+		} 
+		else 
+		{
+			HAL_GPIO_WritePin(GPIOB, pins[i], GPIO_PIN_RESET);
+		}
+		tempNums /= 10; // Переход к следующей цифре
+		SetNumberBin(countNums, binaryNums);
+
+	}
+
+}
+
+
+void Set_4_Bit_Binary_Nums(uint64_t *binaryNums, uint8_t firstBit, uint8_t secondBit, uint8_t thirdBit, uint8_t fourthBit) 
+{
+	// Очищаем последние 5 цифр в binaryNums
+	*binaryNums /= 100000; // Убираем последние 5 цифр
+
+	// Добавляем новые 4 бита
+	uint64_t newBits = (firstBit * 1000) + (secondBit * 100) + (thirdBit * 10) + fourthBit;
+
+	// Обновляем binaryNums
+	*binaryNums = (*binaryNums * 10000) + newBits;
+}
 
 											//Передаем не число а указатель на место хранения числа 
 void SetBinNumber(uint16_t countNums, uint64_t *binaryNums)
@@ -340,6 +374,24 @@ void SetBinNumber(uint16_t countNums, uint64_t *binaryNums)
 		multiplier *= 10; // Увеличиваем множитель (переход к следующему разряду)
 		tempNumber >>= 1; // Сдвигаем число вправо
 	}
+}
+
+void SetNumberBin(uint16_t countNums, uint64_t *binaryNums)
+{
+	uint64_t temp = *binaryNums;
+	uint64_t bitPosition = 0;
+
+	while (temp > 0) 
+	{
+		if (temp % 10 == 1) 
+		{
+			countNums |= (1ULL << bitPosition); // Устанавливаем бит
+		}
+		temp /= 10; // Переход к следующему разряду
+		bitPosition++;
+	}
+
+	*binaryNums = countNums; // Обновляем значение
 }
 
 
