@@ -90,24 +90,64 @@ int main(void)
 	
   /* USER CODE BEGIN 2 */
 	
-    test(100); //Самоиндикация экрана
+    test(20); //Самоиндикация экрана
 	
-	Test_4_LED(250); //Самоиндикация 4 лампочек
+	Test_4_LED(50); //Самоиндикация 4 лампочек
 	
-	Test_12_LED(250); //Самоиндикация 12 лампочек
+	Test_12_LED(50); //Самоиндикация 12 лампочек
+	
+	uint16_t countNums = 0;
+	uint64_t binaryNums = 0 ;
+	
+	uint8_t firstBit = 0;
+	uint8_t secondBit = 0;
+	uint8_t thirdBit = 0;
+	uint8_t fourthBit = 0;
 	
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-    
+    // 1 отпущина 0 нажата
   while (1)
   {
 	  
-	  
     /* USER CODE END WHILE */
+	  
+	  // Задаем число в диапазоне от 0 до 999 и выводем его динамически в время изменения числа 
+	  print_number(countNums);
+	  while (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == 0)
+	  {
+		  //  Добавлена задержка, чтобы набор числа был более контролируемым.
+		  HAL_Delay(10);
+		  // Прибовляем по +1 при зажатой кнопки 
+		  countNums++;
+		  print_number(countNums);
+		  // Если число достигла лимита в 999 то сбрасываем его до 0
+		  if (countNums == 999)
+		  {
+			  countNums = 0;
+		  }
+								// Для того что бы можно было приянть указатель на переменную нужно отправить его в виде ссылки 
+		  SetBinNumber(countNums, &binaryNums);
 
+	  }
+	  
+	  //Пишем &(ссылку) для того что бы можно было приянть указатель на переменную 
+
+	  // Задаем 1 бит и зажигаем 1 лампачку с помощью BUTTON_1
+	  SetFirstBit(&firstBit);
+	  
+	  // Задаем 2 бит и зажигаем 2 лампачку с помощью BUTTON_2
+	  SetSeconsBit(&secondBit);
+	  
+	  // Задаем 3 бит и зажигаем 3 лампачку с помощью BUTTON_3
+	  SetThirdBit(&thirdBit);
+	 
+	  // Задаем 4 бит и зажигаем 4 лампачку с помощью BUTTON_4
+	  SetFourthBit(&fourthBit);
+	     
 
     /* USER CODE BEGIN 3 */
   }

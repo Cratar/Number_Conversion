@@ -14,62 +14,73 @@
     <MemoryWindowPreferences />
     <c>
       <oo>
-        <a>flag1</a>
-        <h>com.sysprogs.types.builtin.HexInt8</h>
+        <a>binaryNums</a>
+        <h>com.sysprogs.types.builtin.HexInt32</h>
         <e>true</e>
         <b>
           <ComparisonMode>Equals</ComparisonMode>
           <Enabled>false</Enabled>
         </b>
-        <c>true</c>
+        <c>false</c>
         <d>false</d>
         <g>false</g>
       </oo>
       <oo>
-        <a>flag2</a>
-        <h>com.sysprogs.types.builtin.HexInt8</h>
+        <a>countNums</a>
+        <h>com.sysprogs.types.builtin.UInt16</h>
         <e>true</e>
         <b>
           <ComparisonMode>Equals</ComparisonMode>
           <Enabled>false</Enabled>
         </b>
-        <c>true</c>
+        <c>false</c>
         <d>false</d>
         <g>false</g>
       </oo>
       <oo>
-        <a>flag3</a>
-        <h>com.sysprogs.types.builtin.HexInt8</h>
+        <a>tempNumber</a>
+        <h>com.sysprogs.types.builtin.UInt64</h>
         <e>true</e>
         <b>
           <ComparisonMode>Equals</ComparisonMode>
           <Enabled>false</Enabled>
         </b>
-        <c>true</c>
+        <c>false</c>
         <d>false</d>
         <g>false</g>
       </oo>
       <oo>
-        <a>flag4</a>
-        <h>com.sysprogs.types.builtin.HexInt8</h>
+        <a>multiplier</a>
+        <h>com.sysprogs.types.builtin.UInt64</h>
         <e>true</e>
         <b>
           <ComparisonMode>Equals</ComparisonMode>
           <Enabled>false</Enabled>
         </b>
-        <c>true</c>
+        <c>false</c>
         <d>false</d>
         <g>false</g>
       </oo>
       <oo>
-        <a>flag0</a>
-        <h>com.sysprogs.types.builtin.HexInt8</h>
+        <a>bit</a>
         <e>true</e>
         <b>
           <ComparisonMode>Equals</ComparisonMode>
           <Enabled>false</Enabled>
         </b>
-        <c>true</c>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>*binaryNums</a>
+        <h>com.sysprogs.types.builtin.UInt64</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
         <d>false</d>
         <g>false</g>
       </oo>

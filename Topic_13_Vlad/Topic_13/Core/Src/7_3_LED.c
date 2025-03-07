@@ -115,6 +115,7 @@ void Test_12_LED(uint16_t delay)
 	
 }
 
+
 void test(uint16_t delay) {
 	//----------------------------Общая проверка экрана------------------------------------------\\
 	HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3 |, GPIO_PIN_SET);
@@ -321,9 +322,153 @@ void test(uint16_t delay) {
 
 }
 
+
 //------------------------------------
 
 
+											//Передаем не число а указатель на место хранения числа 
+void SetBinNumber(uint16_t countNums, uint64_t *binaryNums)
+{
+	uint64_t tempNumber = countNums;
+	uint64_t multiplier = 1; // Множитель для формирования правильных разрядов (1, 10, 100...)
+	*binaryNums = 0; // Обнуляем перед записью
+
+	while (tempNumber > 0)  // Обрабатываем все биты
+	{
+		uint64_t bit = tempNumber & 1; // Берём младший бит
+		*binaryNums += bit * multiplier; // Добавляем бит в нужный разряд
+		multiplier *= 10; // Увеличиваем множитель (переход к следующему разряду)
+		tempNumber >>= 1; // Сдвигаем число вправо
+	}
+}
+
+
+//------------------------
+void SetFirstBit(uint8_t *firstBit)
+{
+	if (HAL_GPIO_ReadPin(GPIOA, BUTTON_1) == GPIO_PIN_RESET) // Проверяем нажатие кнопки
+	{
+		HAL_Delay(10);
+
+
+		if (HAL_GPIO_ReadPin(GPIOA, BUTTON_1) == GPIO_PIN_RESET) // Проверяем повторно
+		{
+			// Инвертируем состояние
+			if (*firstBit == 0)
+			{
+				*firstBit = 1;
+				HAL_GPIO_WritePin(GPIOB, S_0_1, GPIO_PIN_SET);
+			}
+			else
+			{
+				*firstBit = 0;
+				HAL_GPIO_WritePin(GPIOB, S_0_1, GPIO_PIN_RESET);
+			}
+
+			// Ждем отпускания кнопки
+			while (HAL_GPIO_ReadPin(GPIOA, BUTTON_1) == GPIO_PIN_RESET)
+			{
+				HAL_Delay(10);
+ 
+			}
+		}
+	}
+}
+
+void SetSeconsBit(uint8_t *secondBit)
+{
+	if (HAL_GPIO_ReadPin(GPIOA, BUTTON_2) == GPIO_PIN_RESET) // Проверяем нажатие кнопки
+	{
+		HAL_Delay(10);
+
+
+		if (HAL_GPIO_ReadPin(GPIOA, BUTTON_2) == GPIO_PIN_RESET) // Проверяем повторно
+		{
+			// Инвертируем состояние
+			if (*secondBit == 0)
+			{
+				*secondBit = 1;
+				HAL_GPIO_WritePin(GPIOB, S_0_2, GPIO_PIN_SET);
+			}
+			else
+			{
+				*secondBit = 0;
+				HAL_GPIO_WritePin(GPIOB, S_0_2, GPIO_PIN_RESET);
+			}
+
+			// Ждем отпускания кнопки
+			while (HAL_GPIO_ReadPin(GPIOA, BUTTON_2) == GPIO_PIN_RESET)
+			{
+				HAL_Delay(10);
+ 
+			}
+		}
+	}
+}
+
+void SetThirdBit(uint8_t *thirdBit)
+{
+	if (HAL_GPIO_ReadPin(GPIOC, BUTTON_3) == GPIO_PIN_RESET) // Проверяем нажатие кнопки
+	{
+		HAL_Delay(10);
+
+
+		if (HAL_GPIO_ReadPin(GPIOC, BUTTON_3) == GPIO_PIN_RESET) // Проверяем повторно
+		{
+			// Инвертируем состояние
+			if (*thirdBit == 0)
+			{
+				*thirdBit = 1;
+				HAL_GPIO_WritePin(GPIOB, S_0_3, GPIO_PIN_SET);
+			}
+			else
+			{
+				*thirdBit = 0;
+				HAL_GPIO_WritePin(GPIOB, S_0_3, GPIO_PIN_RESET);
+			}
+
+			// Ждем отпускания кнопки
+			while (HAL_GPIO_ReadPin(GPIOC, BUTTON_3) == GPIO_PIN_RESET)
+			{
+				HAL_Delay(10);
+ 
+			}
+		}
+	}
+}
+
+void SetFourthBit(uint8_t *fourthBit)
+{
+	if (HAL_GPIO_ReadPin(GPIOC, BUTTON_4) == GPIO_PIN_RESET) // Проверяем нажатие кнопки
+	{
+		HAL_Delay(10);
+
+
+		if (HAL_GPIO_ReadPin(GPIOC, BUTTON_4) == GPIO_PIN_RESET) // Проверяем повторно
+		{
+			// Инвертируем состояние
+			if (*fourthBit == 0)
+			{
+				*fourthBit = 1;
+				HAL_GPIO_WritePin(GPIOC, S_0_4, GPIO_PIN_SET);
+			}
+			else
+			{
+				*fourthBit = 0;
+				HAL_GPIO_WritePin(GPIOC, S_0_4, GPIO_PIN_RESET);
+			}
+
+			// Ждем отпускания кнопки
+			while (HAL_GPIO_ReadPin(GPIOC, BUTTON_4) == GPIO_PIN_RESET)
+			{
+				HAL_Delay(10);
+ 
+			}
+		}
+	}
+}
+
+//-----------------------------
 
 void set_number(int n){ 
     HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
@@ -409,28 +554,24 @@ void set_n_dig(int dig1, int dig2, int dig3, int dig4) {
 
 void print_number(int n) {
   
-	int n1 = 0, n2 = 0, n3 = 0, n4 = 0;
-    n1=n%10;
-    n2=(n/10)%10;
-    n3=(n/100)%10;
-    n4 = (n / 1000) % 10;
+	int  n1 = 0, n2 = 0, n3 = 0;
+	n1 = n % 10; 
+	
+	n2 = (n / 10) % 10; 
+
+	n3 = (n / 100) % 10;
 
     set_dig(1);
-    set_number(n4);
-	
-    HAL_Delay(5);
-	
-    set_dig(2);
     set_number(n3);
 	
     HAL_Delay(5);
 	
-    set_dig(3);
+    set_dig(2);
     set_number(n2);
 	
     HAL_Delay(5);
 	
-    set_dig(4);
+    set_dig(3);
     set_number(n1);
 	
     HAL_Delay(5);

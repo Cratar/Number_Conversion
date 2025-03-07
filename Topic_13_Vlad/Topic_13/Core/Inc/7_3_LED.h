@@ -44,8 +44,15 @@
 
 
 
+// Удалить 
+// const int InputTime;
 
-extern const int InputTime;
+extern uint64_t binaryNums;
+
+extern uint8_t firstBit ;
+extern uint8_t secondBit ;
+extern uint8_t thirdBit ;
+extern uint8_t fourthBit ;
 
 void test(uint16_t delay); // самоконтроль
 void set_number(int n);                         // вывод цифры
@@ -61,6 +68,19 @@ void TestBooton();
 void Test_4_LED(uint16_t delay);
 void Test_12_LED(uint16_t delay);
 //--------------------------------------------
+void SetBinNumber(uint16_t countNums, uint64_t *binaryNums);
+
+
+
+//----------------------------------- Набирам нужные 4 бита 
+void SetFirstBit(uint8_t *firstBit);
+
+void SetSeconsBit(uint8_t *secondBit);
+
+void SetThirdBit(uint8_t *thirdBit);
+
+void SetFourthBit(uint8_t *fourthBit);
+//-------------------------------------
 
 
 //
