@@ -90,18 +90,24 @@ int main(void)
 	
   /* USER CODE BEGIN 2 */
 	
-    test(20); //Самоиндикация экрана
+    test(100); //Самоиндикация экрана
 	
 	Test_4_LED(50); //Самоиндикация 4 лампочек
 	
 	Test_12_LED(50); //Самоиндикация 12 лампочек
 	
+	// Число в 10-чном представление 
 	uint16_t countNums = 0;
+	// Число в 2-чном представление 
 	uint64_t binaryNums = 0 ;
 	
+	// 1-ый бит измененый 
 	uint8_t firstBit = 0;
+	// 2-ой бит измененый 
 	uint8_t secondBit = 0;
+	// 3-ий бит измененый 
 	uint8_t thirdBit = 0;
+	// 4-ий бит измененый 
 	uint8_t fourthBit = 0;
 	
   /* USER CODE END 2 */
@@ -123,6 +129,7 @@ int main(void)
 		  HAL_Delay(10);
 		  // Прибовляем по +1 при зажатой кнопки 
 		  countNums++;
+		  //Вывод числа на экран 
 		  print_number(countNums);
 		  // Если число достигла лимита в 999 то сбрасываем его до 0
 		  if (countNums == 999)
@@ -148,13 +155,21 @@ int main(void)
 	  // Задаем 4 бит и зажигаем 4 лампачку с помощью BUTTON_4
 	  SetFourthBit(&fourthBit);
 	  
+	  // Если любая BUTTON_1 - BUTTON_4 была нажата , то происходит добавление битов к числу (в зависемости от нажатой кнопки) 
 	  if (firstBit != 0 || secondBit != 0 || thirdBit != 0 || fourthBit != 0)
 	  {
-		  SetLast_4_Bit(&binaryNums, &firstBit, &secondBit, &thirdBit,&fourthBit);
+		  SwapLast_4_Bit(&binaryNums, &firstBit, &secondBit, &thirdBit, &fourthBit);
+		  
+		  //Перевод бинарного числа в 10-чный вид
+		  countNums =  Binary_to_Decimal(&binaryNums);
+		  //ВЫвод числа на экран
+		  print_number(countNums);
 
 	  }
 	  
+	  // В зависеммости от бита загорается нужная лампчока 
 	  Set_LED_12_Bit(&binaryNums);
+	  
 	  
 	  
 	  

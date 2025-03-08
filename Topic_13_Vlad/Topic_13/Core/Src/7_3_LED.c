@@ -7,31 +7,11 @@
 
 #ifndef __7_3_LED_ENABLED
 
-// Временные функции удалить ---------------------------------
-bool flag0 = false;
-bool flag1 = false;
-bool flag2 = false;
-bool flag3 = false;
-bool flag4 = false;
-
-// Удалить 
-void TestBooton()
-{
-
-	// Читаем состояния кнопок
-	flag3 = (HAL_GPIO_ReadPin(GPIOC, BUTTON_3) == GPIO_PIN_RESET);
-	flag4 = (HAL_GPIO_ReadPin(GPIOC, BUTTON_4) == GPIO_PIN_RESET);
-	flag0 = (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == GPIO_PIN_RESET);
-	flag1 = (HAL_GPIO_ReadPin(GPIOA, BUTTON_1) == GPIO_PIN_RESET);
-	flag2 = (HAL_GPIO_ReadPin(GPIOA, BUTTON_2) == GPIO_PIN_RESET);
 
 
-	// Небольшая задержка для устранения дребезга
-	HAL_Delay(50);
-}
 
-//-------------------------------------------
-
+//-------------------------------------------TEST-------------------------
+//Самоиндикация 4 светодиодов 
 void Test_4_LED(uint16_t delay)
 {
 	// 1 Лампачка 
@@ -61,7 +41,7 @@ void Test_4_LED(uint16_t delay)
 	HAL_Delay(delay);
 
 }
-
+//Самоиндикация 12 светодиодов 
 void Test_12_LED(uint16_t delay)
 {
     // 1 лампачка
@@ -114,8 +94,7 @@ void Test_12_LED(uint16_t delay)
 	HAL_GPIO_WritePin(GPIOB, S12, GPIO_PIN_RESET);
 	
 }
-
-
+//Самоиндикация экрана 
 void test(uint16_t delay) {
 	//----------------------------Общая проверка экрана------------------------------------------\\
 	HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3 |, GPIO_PIN_SET);
@@ -321,10 +300,69 @@ void test(uint16_t delay) {
 
 
 }
+//-------------------------------------------------------------------------
 
 
-//------------------------------------
 
+//Заменяем у бинарного числа последние 4 цифры в зависимости от нажатых кнопок
+void SwapLast_4_Bit(uint64_t *binaryNums, uint8_t *firstBit, uint8_t *secondBit, uint8_t *thirdBit, uint8_t *fourthBit)
+{
+	
+	// Убираем последние 4 цифры
+	*binaryNums /= 10000; 
+
+	// Добавляем новые 4 цифры
+	*binaryNums = (*binaryNums * 10000) + (*firstBit * 1000) + (*secondBit * 100) + (*thirdBit * 10) + *fourthBit;
+}
+
+//Из числа переводим в битную последовательност		//Передаем не число а указатель на место хранения числа 
+void SetBinNumber(uint16_t countNums, uint64_t *binaryNums)
+{
+	uint64_t tempNumber = countNums;
+	uint64_t multiplier = 1; // Множитель для формирования правильных разрядов (1, 10, 100...)
+	*binaryNums = 0; // Обнуляем перед записью
+
+	while (tempNumber > 0)  // Обрабатываем все биты
+	{
+		uint64_t bit = tempNumber & 1; // Берём младший бит
+		*binaryNums += bit * multiplier; // Добавляем бит в нужный разряд
+		multiplier *= 10; // Увеличиваем множитель (переход к следующему разряду)
+		tempNumber >>= 1; // Сдвигаем число вправо
+	}
+}
+
+//Перевод числа из 2-чного в 10-чный
+uint16_t Binary_to_Decimal(uint64_t *binaryNums)
+{ 
+	uint64_t num = *binaryNums; 
+	int dec_value = 0; 
+  
+	// Инициализируем базовое значение равным 1,
+	int base = 1; 
+  
+	int temp = num; 
+	// Извлечение последней цифры двоичного числа
+	while (temp) { 
+		int last_digit = temp % 10; 
+		// Удаление последней цифры из двоичного числа
+		temp = temp / 10; 
+  
+		// Умножаем последнюю цифру на базовое значение 
+				// и добавляем ее к десятичному значению
+		dec_value += last_digit * base; 
+  
+		// Обновление базового значения путем умножения его на 2
+		base = base * 2; 
+	} 
+  
+	// Возвращает десятичное значение
+	return dec_value; 
+} 
+
+
+//------------------------ Установка цвета для лампочек-----------------
+
+//Зажигание лампочек в зависемости от двоичного числа 
 void Set_LED_12_Bit(uint64_t *binaryNums)
 {
 	uint16_t pins[] = { S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12 }; // GPIO пины для лампочек
@@ -345,59 +383,7 @@ void Set_LED_12_Bit(uint64_t *binaryNums)
 	}
 
 }
-
-
-void SetLast_4_Bit(uint64_t *binaryNums, uint8_t *firstBit, uint8_t *secondBit, uint8_t *thirdBit, uint8_t *fourthBit)
-{
-	
-	// Убираем последние 4 цифры
-	*binaryNums /= 10000; 
-
-	// Добавляем новые 4 цифры
-	*binaryNums = (*binaryNums * 10000) + (*firstBit * 1000) + (*secondBit * 100) + (*thirdBit * 10) + *fourthBit;
-}
-
-
-
-//------------------------Перевод чисел--------------------
-											//Передаем не число а указатель на место хранения числа 
-void SetBinNumber(uint16_t countNums, uint64_t *binaryNums)
-{
-	uint64_t tempNumber = countNums;
-	uint64_t multiplier = 1; // Множитель для формирования правильных разрядов (1, 10, 100...)
-	*binaryNums = 0; // Обнуляем перед записью
-
-	while (tempNumber > 0)  // Обрабатываем все биты
-	{
-		uint64_t bit = tempNumber & 1; // Берём младший бит
-		*binaryNums += bit * multiplier; // Добавляем бит в нужный разряд
-		multiplier *= 10; // Увеличиваем множитель (переход к следующему разряду)
-		tempNumber >>= 1; // Сдвигаем число вправо
-	}
-}
-
-void SetNumberBin(uint16_t countNums, uint64_t *binaryNums)
-{
-	uint64_t temp = *binaryNums;
-	uint64_t bitPosition = 0;
-
-	while (temp > 0) 
-	{
-		if (temp % 10 == 1) 
-		{
-			countNums |= (1ULL << bitPosition); // Устанавливаем бит
-		}
-		temp /= 10; // Переход к следующему разряду
-		bitPosition++;
-	}
-
-	*binaryNums = countNums; // Обновляем значение
-}
-//---------------------------------------
-
-
-
-//------------------------
+//Зажигание 1 лампочки при нажатие на BUTTON_1
 void SetFirstBit(uint8_t *firstBit)
 {
 	if (HAL_GPIO_ReadPin(GPIOA, BUTTON_1) == GPIO_PIN_RESET) // Проверяем нажатие кнопки
@@ -428,7 +414,7 @@ void SetFirstBit(uint8_t *firstBit)
 		}
 	}
 }
-
+//Зажигание 2 лампочки при нажатие на BUTTON_2
 void SetSeconsBit(uint8_t *secondBit)
 {
 	if (HAL_GPIO_ReadPin(GPIOA, BUTTON_2) == GPIO_PIN_RESET) // Проверяем нажатие кнопки
@@ -459,7 +445,7 @@ void SetSeconsBit(uint8_t *secondBit)
 		}
 	}
 }
-
+//Зажигание 3 лампочки при нажатие на BUTTON_3
 void SetThirdBit(uint8_t *thirdBit)
 {
 	if (HAL_GPIO_ReadPin(GPIOC, BUTTON_3) == GPIO_PIN_RESET) // Проверяем нажатие кнопки
@@ -490,7 +476,7 @@ void SetThirdBit(uint8_t *thirdBit)
 		}
 	}
 }
-
+//Зажигание 4 лампочки при нажатие на BUTTON_4
 void SetFourthBit(uint8_t *fourthBit)
 {
 	if (HAL_GPIO_ReadPin(GPIOC, BUTTON_4) == GPIO_PIN_RESET) // Проверяем нажатие кнопки
@@ -522,8 +508,9 @@ void SetFourthBit(uint8_t *fourthBit)
 	}
 }
 
-//-----------------------------
+//----------------------------------------------------------------------
 
+// В зависемости от числа зажигаются определенный набор сегментов на экране 
 void set_number(int n){ 
     HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
     if (n==0) 
@@ -567,8 +554,7 @@ void set_number(int n){
     HAL_GPIO_WritePin(GPIOA, A | B | C | D| G | F , GPIO_PIN_SET);// 9 
     }
 }
-
-
+// Устнановка индикации в определенную ячейку на экране 
 void set_dig(int n) {
     HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3 , GPIO_PIN_SET);
     if (n==1)
@@ -582,30 +568,7 @@ void set_dig(int n) {
 	
 
 }
-
-void set_n_dig(int dig1, int dig2, int dig3, int dig4) {
-	
-	if (dig1 == 1) 
-		HAL_GPIO_WritePin(GPIOA, D7_1, GPIO_PIN_RESET);
-    else
-        HAL_GPIO_WritePin(GPIOA, D7_1 , GPIO_PIN_SET);
-      
-    if (dig2==1)
-        HAL_GPIO_WritePin(GPIOA, D7_2 , GPIO_PIN_RESET);
-    else
-        HAL_GPIO_WritePin(GPIOA, D7_2 , GPIO_PIN_SET);
-      
-    if (dig3==1)
-        HAL_GPIO_WritePin(GPIOA, D7_3 , GPIO_PIN_RESET);
-    else
-        HAL_GPIO_WritePin(GPIOA, D7_3 , GPIO_PIN_SET);
-	
-  
-
-}
-
-// печать числа
-
+// печать числа на экран 
 void print_number(int n) {
   
 	int  n1 = 0, n2 = 0, n3 = 0;
@@ -631,154 +594,6 @@ void print_number(int n) {
     HAL_Delay(5);
 	
 } 
-
-//---------------New features---------\\
-
-
-
-//const int InputTime = 4000000;
-//
-//// Считаме клики 
-//int CountClicks()
-//{
-//	int i = 0;
-//	int tap = 0;
-//	while (i < InputTime)
-//	{
-//		if (HAL_GPIO_ReadPin(GPIOA, Pin_Booton) == 0) 
-//		{
-//			HAL_Delay(50); 
-//
-//			if (HAL_GPIO_ReadPin(GPIOA, Pin_Booton) == 0) 
-//			{
-//				tap++;
-//
-//				// Ждем отпускания кнопки что бы счетчик не наматывал километраж пока кнопка зажата
-//				while (HAL_GPIO_ReadPin(GPIOA, Pin_Booton) == 0)
-//				{
-//					HAL_Delay(10);
-//				}
-//			}
-//		}
-//    
-//		i++;
-//	}
-//	
-//	return tap;
-//	
-//}
-
-
-//Вывод минут и секунд 
-//void PrintTimeMinutesSeconds(int min, int sec) {
-//	minute = min;
-//	second = sec;
-//	
-//	while (true)
-//	{
-//		set_dig(1);
-//		set_number((minute / 10) % 10);
-//		HAL_Delay(5);
-//
-//		
-//		set_dig(2);
-//		set_number(minute % 10);
-//		HAL_GPIO_WritePin(GPIOA, DP, GPIO_PIN_SET);
-//		HAL_Delay(5);
-//
-//		set_dig(3);
-//		set_number((second / 10) % 10);
-//		HAL_Delay(5);
-//    
-//		set_dig(4);
-//		set_number(second % 10);
-//		HAL_Delay(5);
-//		
-//		if (HAL_GPIO_ReadPin(GPIOA, Pin_Booton) == 0)
-//		{
-//			HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3 | , GPIO_PIN_RESET);
-//			HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
-//		
-//			break;
-//		}
-//	}
-//	
-//}
-//
-////Вывод часы и минуты 
-//
-//void PrintTimeHoursMinutes(int hours, int minutes)
-//{
-//	hour = hours;
-//	minute = minutes;
-//	
-//	while (true)
-//	{
-//		set_dig(1);
-//		set_number((hour / 10) % 10);
-//		HAL_Delay(5);
-//
-//		
-//		set_dig(2);
-//		set_number(hour % 10);
-//		HAL_GPIO_WritePin(GPIOA, DP, GPIO_PIN_SET);
-//		HAL_Delay(5);
-//
-//		set_dig(3);
-//		set_number((minute / 10) % 10);
-//		HAL_Delay(5);
-//    
-//		set_dig(4);
-//		set_number(minute % 10);
-//		HAL_Delay(5);
-//		
-//		if (HAL_GPIO_ReadPin(GPIOA, Pin_Booton) == 0)
-//		{
-//			HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3 | , GPIO_PIN_RESET);
-//			HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
-//		
-//			break;
-//		}
-//	}
-//}
-//
-//// Вывод месяц и день 
-//
-//void PrintTimeMonthDate(int mon, int date)
-//{
-//	month = mon;
-//	day = date;
-//	
-//	while (true)
-//	{
-//		set_dig(1);
-//		set_number((month / 10) % 10);
-//		HAL_Delay(5);
-//
-//		
-//		set_dig(2);
-//		set_number(month % 10);
-//		HAL_GPIO_WritePin(GPIOA, DP, GPIO_PIN_SET);
-//		HAL_Delay(5);
-//
-//		set_dig(3);
-//		set_number((day / 10) % 10);
-//		HAL_Delay(5);
-//    
-//		set_dig(4);
-//		set_number(day % 10);
-//		HAL_Delay(5);
-//		
-//		if (HAL_GPIO_ReadPin(GPIOA, Pin_Booton) == 0)
-//		{
-//			HAL_GPIO_WritePin(GPIOA, D7_1 | D7_2 | D7_3 | , GPIO_PIN_RESET);
-//			HAL_GPIO_WritePin(GPIOA, A | B | C | D | G | E | F | DP, GPIO_PIN_RESET);
-//		
-//			break;
-//		}
-//	}
-//}
-
 
 
 #endif /* __7_3_LED_ENABLED */

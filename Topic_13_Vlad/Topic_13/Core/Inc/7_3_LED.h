@@ -44,9 +44,8 @@
 
 
 
-// Удалить 
-// const int InputTime;
 
+// Глобально объявляем пременные для доступа их в всех подклюенных .h файлов и .c
 extern uint64_t binaryNums;
 
 extern uint8_t firstBit ;
@@ -54,55 +53,40 @@ extern uint8_t secondBit ;
 extern uint8_t thirdBit ;
 extern uint8_t fourthBit ;
 
-void test(uint16_t delay); // самоконтроль
 void set_number(int n);                         // вывод цифры
 void set_dig(int n);                            // установка DIG
-void set_n_dig(int dig1, int dig2, int dig3, int dig4); // установка DIG1,DIG2,DIG3
 void print_number(int n); // печать числа
 
 
 
-// Удалить
-void TestBooton();
-
-//------------------------------
+//-------------------------------------------TEST-------------------------
+void test(uint16_t delay); // самоконтроль
 void Test_4_LED(uint16_t delay);
 void Test_12_LED(uint16_t delay);
-//--------------------------------------------
+//---------------------------------------------------------------------
+
+//Заменяем у бинарного числа последние 4 цифры в зависимости от нажатых кнопок
+void SwapLast_4_Bit(uint64_t *binaryNums, uint8_t *firstBit, uint8_t *secondBit, uint8_t *thirdBit, uint8_t *fourthBit);
+
+//Из числа переводим в битную последовательност		//(*)Передаем не число а указатель на место хранения числа 
 void SetBinNumber(uint16_t countNums, uint64_t *binaryNums);
-// Устанавливаем битовое отображение на лампачках
+
+//Перевод числа из 2-чного в 10-чный
+uint16_t Binary_to_Decimal(uint64_t *binaryNums);
+
+//------------------------ Установка цвета для лампочек----------------- 
+
+//Зажигание лампочек в зависемости от двоичного числа 
 void Set_LED_12_Bit(uint64_t *binaryNums);
-// 
-void SetLast_4_Bit(uint64_t *binaryNums, uint8_t *firstBit, uint8_t *secondBit, uint8_t *thirdBit, uint8_t *fourthBit);
-void SetNumberBin(uint16_t countNums, uint64_t *binaryNums);
-
-//----------------------------------- Набирам нужные 4 бита 
+//Зажигание 1 лампочки при нажатие на BUTTON_1
 void SetFirstBit(uint8_t *firstBit);
-
+//Зажигание 2 лампочки при нажатие на BUTTON_2
 void SetSeconsBit(uint8_t *secondBit);
-
+//Зажигание 3 лампочки при нажатие на BUTTON_3
 void SetThirdBit(uint8_t *thirdBit);
-
+//Зажигание 4 лампочки при нажатие на BUTTON_4
 void SetFourthBit(uint8_t *fourthBit);
-//-------------------------------------
-
-
-//
-////Объявляем функцию - Считает количество нажатий на кнопку( за условные 4 сек)
-//
-//int CountClicks();
-//
-////Объявляем функцию - Вывод минут и секунд 
-//
-//void PrintTimeMinutesSeconds(int minutes, int second);
-//
-////Объявляем функцию - Вывод часы и минуты 
-//
-//void PrintTimeHoursMinutes(int hours, int minutes);
-//
-////Объявляем функцию - Вывод месяц и день 
-//
-//void PrintTimeMonthDate(int mon, int date);
+//----------------------------------------------------------------------
 
 
 
