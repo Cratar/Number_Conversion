@@ -163,7 +163,11 @@ int main(void)
 		  //Перевод бинарного числа в 10-чный вид
 		  countNums =  Binary_to_Decimal(&binaryNums);
 		  //ВЫвод числа на экран
+<<<<<<< HEAD
 		  PrintNumberDecimal(countNums);
+=======
+		  print_number(countNums);
+>>>>>>> 4ad5361b7cfdba799c08bc68791f64d97f1bb526
 
 	  }
 	  
