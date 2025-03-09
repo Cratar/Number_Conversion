@@ -1,5 +1,5 @@
 VisualGDB/Debug/_2_/Core/Src/stm32f1xx_it.o: \
- D:/COD_Microproc/Number_Conversion/Topic_13_Vlad/Topic_13/Core/Src/stm32f1xx_it.c \
+ C:/Sozonov/Number_Conversion/Topic_13_Vlad/Topic_13/Core/Src/stm32f1xx_it.c \
  ../../Core/Inc/main.h \
  ../../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../../Core/Inc/stm32f1xx_hal_conf.h \

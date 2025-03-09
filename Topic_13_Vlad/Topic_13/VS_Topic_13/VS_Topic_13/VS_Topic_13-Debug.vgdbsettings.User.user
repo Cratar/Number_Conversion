@@ -11,11 +11,29 @@
     </CatchpointConfiguration>
     <VisualWatchPreferences />
     <MaskInterruptsWhileStepping>false</MaskInterruptsWhileStepping>
-    <MemoryWindowPreferences />
+    <MemoryWindowPreferences>
+      <MemoryWindowPreferences>
+        <ExpressionHistory />
+        <SymbolicMode>true</SymbolicMode>
+        <TakeAddressMode>false</TakeAddressMode>
+        <Format>
+          <DataWidth>OneByte</DataWidth>
+          <DataFormat>Hexadecimal</DataFormat>
+          <TextFormat>ANSI</TextFormat>
+        </Format>
+        <LiveMemorySettings>
+          <Enabled>true</Enabled>
+          <BreakOnChanges>false</BreakOnChanges>
+          <AutoRefresh>false</AutoRefresh>
+          <RefreshTimeout>0</RefreshTimeout>
+        </LiveMemorySettings>
+        <ShowStatusBar>true</ShowStatusBar>
+        <DisplaySymbols>false</DisplaySymbols>
+      </MemoryWindowPreferences>
+    </MemoryWindowPreferences>
     <c>
       <oo>
-        <a>binaryNums</a>
-        <h>com.sysprogs.types.builtin.HexInt32</h>
+        <a>*binaryNums</a>
         <e>true</e>
         <b>
           <ComparisonMode>Equals</ComparisonMode>
@@ -26,7 +44,74 @@
         <g>false</g>
       </oo>
       <oo>
-        <a>*binaryNums</a>
+        <a>*firstBit</a>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>*secondBit</a>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>*thirdBit</a>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>*fourthBit</a>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>countNums</a>
+        <h>com.sysprogs.types.builtin.UInt16</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>&amp;binaryNums</a>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>binaryNums</a>
         <h>com.sysprogs.types.builtin.UInt64</h>
         <e>true</e>
         <b>
