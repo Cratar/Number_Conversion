@@ -20,7 +20,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-#include "stdbool.h" // для того что бы появился тип данных bool
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -90,7 +89,7 @@ int main(void)
 	
   /* USER CODE BEGIN 2 */
 	
-    test(100); //Самоиндикация экрана
+    test(50); //Самоиндикация экрана
 	
 	Test_4_LED(50); //Самоиндикация 4 лампочек
 	
@@ -110,6 +109,13 @@ int main(void)
 	// 4-ий бит измененый 
 	uint8_t fourthBit = 0;
 	
+	//Первое число в 16 ричном формате
+	uint8_t firstNum = 0;
+	//Второе число в 16 ричном формате
+	uint8_t secondNum = 0;  
+	//Третье число в 16 ричном формате
+	uint8_t thirdNum = 0;
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -122,23 +128,27 @@ int main(void)
     /* USER CODE END WHILE */
 	  
 	  // Задаем число в диапазоне от 0 до 999 и выводем его динамически в время изменения числа 
-	  print_number(countNums);
+	  
+	  print_number(&firstNum, &secondNum, &thirdNum); 
+
+
 	  while (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == 0)
 	  {
-		  //  Добавлена задержка, чтобы набор числа был более контролируемым.
-		  HAL_Delay(10);
-		  // Прибовляем по +1 при зажатой кнопки 
-		  countNums++;
-		  //Вывод числа на экран 
-		  print_number(countNums);
-		  // Если число достигла лимита в 999 то сбрасываем его до 0
+		  HAL_Delay(10); // Задержка для стабилизации
+
+		  countNums++;  
+		  // Вывод числа в шестнадцатеричном формате
+		  firstNum++;
+		  print_number(&firstNum, &secondNum, &thirdNum); 
+
+		  // Ограничение до 999
 		  if (countNums == 999)
 		  {
 			  countNums = 0;
 		  }
-								// Для того что бы можно было приянть указатель на переменную нужно отправить его в виде ссылки 
-		  SetBinNumber(countNums, &binaryNums);
 
+		  // Преобразуем число в двоичный формат и сохраняем в binaryNums
+		  SetBinNumber(&countNums, &binaryNums);
 	  }
 	  
 	  //Пишем &(ссылку) для того что бы можно было приянть указатель на переменную 
@@ -158,23 +168,20 @@ int main(void)
 	  // Если любая BUTTON_1 - BUTTON_4 была нажата , то происходит добавление битов к числу (в зависемости от нажатой кнопки) 
 	  if (firstBit != 0 || secondBit != 0 || thirdBit != 0 || fourthBit != 0)
 	  {
+		  //Меняем последние 4 бита в числе 
 		  SwapLast_4_Bit(&binaryNums, &firstBit, &secondBit, &thirdBit, &fourthBit);
-		  
-		  //Перевод бинарного числа в 10-чный вид
+		  //Обновляем 10-чиное число после ввода 4 бит в конец
 		  countNums =  Binary_to_Decimal(&binaryNums);
-		  //ВЫвод числа на экран
-<<<<<<< HEAD
-		  PrintNumberDecimal(countNums);
-=======
-		  print_number(countNums);
->>>>>>> 4ad5361b7cfdba799c08bc68791f64d97f1bb526
+		  
+		  //Перевод из 10-чной в 16-ричной
+		  DecimalHexadecimal(countNums, &firstNum, &secondNum, &thirdNum);
+		  //Вывод числа на экран
+		  print_number(&firstNum, &secondNum, &thirdNum); 
 
 	  }
 	  
 	  // В зависеммости от бита загорается нужная лампчока 
 	  Set_LED_12_Bit(&binaryNums);
-	  
-	  
 	  
 	  
     /* USER CODE BEGIN 3 */

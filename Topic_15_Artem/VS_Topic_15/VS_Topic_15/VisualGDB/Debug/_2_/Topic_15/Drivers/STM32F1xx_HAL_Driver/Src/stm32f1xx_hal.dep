@@ -1,0 +1,60 @@
+VisualGDB/Debug/_2_/Topic_15/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o: \
+ D:/COD_Microproc/Number_Conversion/Topic_15_Artem/Topic_15/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c \
+ ../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
+ ../../Topic_15/Core/Inc/stm32f1xx_hal_conf.h \
+ ../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
+ ../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h \
+ ../../Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h \
+ ../../Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h \
+ ../../Topic_15/Drivers/CMSIS/Include/core_cm3.h \
+ C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdint.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/stdint.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_default_types.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/features.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/_newlib_version.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_intsup.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_stdint.h \
+ ../../Topic_15/Drivers/CMSIS/Include/cmsis_version.h \
+ ../../Topic_15/Drivers/CMSIS/Include/cmsis_compiler.h \
+ ../../Topic_15/Drivers/CMSIS/Include/cmsis_gcc.h \
+ ../../Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h \
+ C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stddef.h \
+ ../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h \
+ ../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h \
+ ../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h \
+ ../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h \
+ ../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h \
+ ../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h \
+ ../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h \
+ ../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h \
+ ../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
+ ../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
+../../Topic_15/Core/Inc/stm32f1xx_hal_conf.h:
+../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:
+../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h:
+../../Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:
+../../Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h:
+../../Topic_15/Drivers/CMSIS/Include/core_cm3.h:
+C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdint.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/stdint.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_default_types.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/features.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/_newlib_version.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_intsup.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_stdint.h:
+../../Topic_15/Drivers/CMSIS/Include/cmsis_version.h:
+../../Topic_15/Drivers/CMSIS/Include/cmsis_compiler.h:
+../../Topic_15/Drivers/CMSIS/Include/cmsis_gcc.h:
+../../Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h:
+C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stddef.h:
+../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h:
+../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h:
+../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h:
+../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h:
+../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:
+../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h:
+../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h:
+../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:
+../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:
+../../Topic_15/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:

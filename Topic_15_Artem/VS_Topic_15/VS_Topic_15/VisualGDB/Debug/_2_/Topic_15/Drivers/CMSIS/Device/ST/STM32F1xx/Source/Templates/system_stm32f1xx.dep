@@ -1,0 +1,30 @@
+VisualGDB/Debug/_2_/Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/system_stm32f1xx.o: \
+ D:/COD_Microproc/Number_Conversion/Topic_15_Artem/Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/system_stm32f1xx.c \
+ ../../Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h \
+ ../../Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h \
+ ../../Topic_15/Drivers/CMSIS/Include/core_cm3.h \
+ C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdint.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/stdint.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_default_types.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/features.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/_newlib_version.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_intsup.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_stdint.h \
+ ../../Topic_15/Drivers/CMSIS/Include/cmsis_version.h \
+ ../../Topic_15/Drivers/CMSIS/Include/cmsis_compiler.h \
+ ../../Topic_15/Drivers/CMSIS/Include/cmsis_gcc.h \
+ ../../Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
+../../Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:
+../../Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h:
+../../Topic_15/Drivers/CMSIS/Include/core_cm3.h:
+C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdint.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/stdint.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_default_types.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/features.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/_newlib_version.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_intsup.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_stdint.h:
+../../Topic_15/Drivers/CMSIS/Include/cmsis_version.h:
+../../Topic_15/Drivers/CMSIS/Include/cmsis_compiler.h:
+../../Topic_15/Drivers/CMSIS/Include/cmsis_gcc.h:
+../../Topic_15/Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h:

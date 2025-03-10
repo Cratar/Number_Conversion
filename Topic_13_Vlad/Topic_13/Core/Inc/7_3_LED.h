@@ -2,7 +2,6 @@
 #ifndef __7_3_LED_H
 #define __7_3_LED_H
 #include "stm32f1xx_it.h"
-#include "stdbool.h"
 #include "main.h"
 
 #define A GPIO_PIN_10
@@ -43,8 +42,6 @@
 #define BUTTON_4 GPIO_PIN_15
 
 
-
-
 // Глобально объявляем пременные для доступа их в всех подклюенных .h файлов и .c
 extern uint64_t binaryNums;
 
@@ -53,11 +50,14 @@ extern uint8_t secondBit ;
 extern uint8_t thirdBit ;
 extern uint8_t fourthBit ;
 
+extern uint8_t firstNum;
+extern uint8_t secondNum;
+extern uint8_t thirdNum;
+
+
 void set_number(int n);                         // вывод цифры
 void set_dig(int n);                            // установка DIG
-void print_number(int n); // печать числа
-
-
+void print_number(uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum);
 
 //-------------------------------------------TEST-------------------------
 void test(uint16_t delay); // самоконтроль
@@ -69,11 +69,12 @@ void Test_12_LED(uint16_t delay);
 void SwapLast_4_Bit(uint64_t *binaryNums, uint8_t *firstBit, uint8_t *secondBit, uint8_t *thirdBit, uint8_t *fourthBit);
 
 //Из числа переводим в битную последовательност		//(*)Передаем не число а указатель на место хранения числа 
-void SetBinNumber(uint16_t countNums, uint64_t *binaryNums);
+void SetBinNumber(uint16_t *countNums, uint64_t *binaryNums);
 
-//Перевод числа из 2-чного в 10-чный
+// Перевод из бинарного числа в двоичный 
 uint16_t Binary_to_Decimal(uint64_t *binaryNums);
 
+void DecimalHexadecimal(uint16_t countNums, uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum);
 //------------------------ Установка цвета для лампочек----------------- 
 
 //Зажигание лампочек в зависемости от двоичного числа 
