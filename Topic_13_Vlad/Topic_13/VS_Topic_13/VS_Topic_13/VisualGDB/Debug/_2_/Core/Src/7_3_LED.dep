@@ -1,5 +1,5 @@
 VisualGDB/Debug/_2_/Core/Src/7_3_LED.o: \
- C:/Sozonov/Number_Conversion/Topic_13_Vlad/Topic_13/Core/Src/7_3_LED.c \
+ D:/COD_Microproc/Number_Conversion/Topic_13_Vlad/Topic_13/Core/Src/7_3_LED.c \
  ../../Core/Inc/7_3_LED.h ../../Core/Inc/stm32f1xx_it.h \
  C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdbool.h \
  ../../Core/Inc/main.h \

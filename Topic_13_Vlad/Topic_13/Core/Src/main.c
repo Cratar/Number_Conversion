@@ -20,7 +20,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -109,13 +108,6 @@ int main(void)
 	// 4-ий бит измененый 
 	uint8_t fourthBit = 0;
 	
-	//Первое число в 16 ричном формате
-	uint8_t firstNum = 0;
-	//Второе число в 16 ричном формате
-	uint8_t secondNum = 0;  
-	//Третье число в 16 ричном формате
-	uint8_t thirdNum = 0;
-	
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -126,33 +118,10 @@ int main(void)
   {
 	  
     /* USER CODE END WHILE */
-	  
+
 	  // Задаем число в диапазоне от 0 до 999 и выводем его динамически в время изменения числа 
+	  print_number(countNums);
 	  
-	  print_number(&firstNum, &secondNum, &thirdNum); 
-
-
-	  while (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == 0)
-	  {
-		  HAL_Delay(10); // Задержка для стабилизации
-
-		  countNums++;  
-		  // Вывод числа в шестнадцатеричном формате
-		  firstNum++;
-		  print_number(&firstNum, &secondNum, &thirdNum); 
-
-		  // Ограничение до 999
-		  if (countNums == 999)
-		  {
-			  countNums = 0;
-		  }
-
-		  // Преобразуем число в двоичный формат и сохраняем в binaryNums
-		  SetBinNumber(&countNums, &binaryNums);
-	  }
-	  
-	  //Пишем &(ссылку) для того что бы можно было приянть указатель на переменную 
-
 	  // Задаем 1 бит и зажигаем 1 лампачку с помощью BUTTON_1
 	  SetFirstBit(&firstBit);
 	  
@@ -165,24 +134,59 @@ int main(void)
 	  // Задаем 4 бит и зажигаем 4 лампачку с помощью BUTTON_4
 	  SetFourthBit(&fourthBit);
 	  
-	  // Если любая BUTTON_1 - BUTTON_4 была нажата , то происходит добавление битов к числу (в зависемости от нажатой кнопки) 
-	  if (firstBit != 0 || secondBit != 0 || thirdBit != 0 || fourthBit != 0)
+	  // Если число достигла лимита в 999 то сбрасываем все до 0
+	  if (countNums >= 999)
 	  {
-		  //Меняем последние 4 бита в числе 
-		  SwapLast_4_Bit(&binaryNums, &firstBit, &secondBit, &thirdBit, &fourthBit);
-		  //Обновляем 10-чиное число после ввода 4 бит в конец
-		  countNums =  Binary_to_Decimal(&binaryNums);
+		  countNums = 0;
+		  binaryNums = 0;
 		  
-		  //Перевод из 10-чной в 16-ричной
-		  DecimalHexadecimal(countNums, &firstNum, &secondNum, &thirdNum);
-		  //Вывод числа на экран
-		  print_number(&firstNum, &secondNum, &thirdNum); 
-
 	  }
 	  
-	  // В зависеммости от бита загорается нужная лампчока 
-	  Set_LED_12_Bit(&binaryNums);
+	  if (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == 0)
+	  {
+		 
+		  HAL_Delay(50);
+		//Гасим светодиоды
+		  HAL_GPIO_WritePin(GPIOB, S_0_1, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(GPIOB, S_0_2, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(GPIOB, S_0_3, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(GPIOC, S_0_4, GPIO_PIN_RESET);
+		  
+		  // Формируем 4-битное число из заданных битов
+		  uint16_t newBits = (firstBit << 3) | (secondBit << 2) | (thirdBit << 1) | fourthBit;
+
+		  
+		  // Сдвигаем исходное число на 4 бита влево и добавляем новые биты  к 10-тичному числу
+		  countNums = (countNums << 4) | newBits;
+		  
+		  //Формируем в переменную binaryNums битную последовательность 
+		  SetBinNumber(countNums, &binaryNums);
+		  
+		  //Обнуляем заданные биты
+		  firstBit = 0;
+		  secondBit = 0;
+		  thirdBit = 0;
+		  fourthBit = 0;
+
+		  //Обновляем 10-чное число в зависеммости от 2-чного
+		  countNums = Binary_to_Decimal(binaryNums);
+		  
+		  //Вывод числа на экран 
+		  print_number(countNums);
+
+		  // Для того что бы при нажатие на кнопку BUTTON_0 if не выполнялся несколько раз
+		  while (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == 0)
+		  {
+			  HAL_Delay(10);
+ 
+		  }
+	  }
+
+	//Зажигаем 12 лампочек в зависеммости от заданого бинарного числа 
+	  Set_LED_12_Bit(binaryNums);
 	  
+	  //Вывод числа на экран в 10-чном виде 
+	  print_number(countNums);
 	  
     /* USER CODE BEGIN 3 */
   }

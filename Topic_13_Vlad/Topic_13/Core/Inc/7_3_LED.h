@@ -42,50 +42,38 @@
 #define BUTTON_4 GPIO_PIN_15
 
 
+
+
 // Глобально объявляем пременные для доступа их в всех подклюенных .h файлов и .c
-extern uint64_t binaryNums;
 
-extern uint8_t firstBit ;
-extern uint8_t secondBit ;
-extern uint8_t thirdBit ;
-extern uint8_t fourthBit ;
+void set_number(int n);    // вывод цифры
+void set_dig(int n);       // установка DIG
+void print_number(int n); // печать числа
 
-extern uint8_t firstNum;
-extern uint8_t secondNum;
-extern uint8_t thirdNum;
-
-
-void set_number(int n);                         // вывод цифры
-void set_dig(int n);                            // установка DIG
-void print_number(uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum);
 
 //-------------------------------------------TEST-------------------------
 void test(uint16_t delay); // самоконтроль
-void Test_4_LED(uint16_t delay);
-void Test_12_LED(uint16_t delay);
+void Test_4_LED(uint16_t delay); // самоконтроль 4 светодиодов 
+void Test_12_LED(uint16_t delay); // самоконтроль 12 светодиодов 
 //---------------------------------------------------------------------
 
-//Заменяем у бинарного числа последние 4 цифры в зависимости от нажатых кнопок
-void SwapLast_4_Bit(uint64_t *binaryNums, uint8_t *firstBit, uint8_t *secondBit, uint8_t *thirdBit, uint8_t *fourthBit);
-
 //Из числа переводим в битную последовательност		//(*)Передаем не число а указатель на место хранения числа 
-void SetBinNumber(uint16_t *countNums, uint64_t *binaryNums);
+void SetBinNumber(uint16_t countNums, uint64_t *binaryNums);
 
-// Перевод из бинарного числа в двоичный 
-uint16_t Binary_to_Decimal(uint64_t *binaryNums);
+//Перевод числа из 2-чного в 10-чный
+uint16_t Binary_to_Decimal(uint64_t binaryNums);
 
-void DecimalHexadecimal(uint16_t countNums, uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum);
-//------------------------ Установка цвета для лампочек----------------- 
+//------------------------ Установка цвета для светодиодов----------------- 
 
-//Зажигание лампочек в зависемости от двоичного числа 
-void Set_LED_12_Bit(uint64_t *binaryNums);
-//Зажигание 1 лампочки при нажатие на BUTTON_1
+//Зажигание светодиодов в зависемости от двоичного числа 
+void Set_LED_12_Bit(uint64_t binaryNums);
+//Зажигание 1 светода при нажатие на BUTTON_1
 void SetFirstBit(uint8_t *firstBit);
-//Зажигание 2 лампочки при нажатие на BUTTON_2
+//Зажигание 2 светода при нажатие на BUTTON_2
 void SetSeconsBit(uint8_t *secondBit);
-//Зажигание 3 лампочки при нажатие на BUTTON_3
+//Зажигание 3 светода при нажатие на BUTTON_3
 void SetThirdBit(uint8_t *thirdBit);
-//Зажигание 4 лампочки при нажатие на BUTTON_4
+//Зажигание 4 светода при нажатие на BUTTON_4
 void SetFourthBit(uint8_t *fourthBit);
 //----------------------------------------------------------------------
 

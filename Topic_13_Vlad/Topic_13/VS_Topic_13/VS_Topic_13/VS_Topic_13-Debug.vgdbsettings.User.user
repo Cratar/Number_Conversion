@@ -122,6 +122,66 @@
         <d>false</d>
         <g>false</g>
       </oo>
+      <oo>
+        <a>firstBit</a>
+        <h>com.sysprogs.types.builtin.UInt8</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>secondBit</a>
+        <h>com.sysprogs.types.builtin.UInt8</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>thirdBit</a>
+        <h>com.sysprogs.types.builtin.UInt8</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>fourthBit</a>
+        <h>com.sysprogs.types.builtin.UInt8</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>newBits</a>
+        <h>com.sysprogs.types.builtin.UInt16</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
     </c>
     <a>
       <d>

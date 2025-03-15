@@ -9,6 +9,7 @@
 
 
 
+
 //-------------------------------------------TEST-------------------------
 //Самоиндикация 4 светодиодов 
 void Test_4_LED(uint16_t delay)
@@ -301,21 +302,11 @@ void test(uint16_t delay) {
 }
 //-------------------------------------------------------------------------
 
-//Заменяем у бинарного числа последние 4 цифры в зависимости от нажатых кнопок
-void SwapLast_4_Bit(uint64_t *binaryNums, uint8_t *firstBit, uint8_t *secondBit, uint8_t *thirdBit, uint8_t *fourthBit)
-{
-	
-	// Убираем последние 4 цифры
-	*binaryNums /= 10000; 
-
-	// Добавляем новые 4 цифры
-	*binaryNums = ((*binaryNums) * 10000) + ((*firstBit) * 1000) + ((*secondBit) * 100) + ((*thirdBit) * 10) + (*fourthBit);
-}
 
 //Из числа переводим в битную последовательност		//Передаем не число а указатель на место хранения числа 
-void SetBinNumber(uint16_t *countNums, uint64_t *binaryNums)
+void SetBinNumber(uint16_t countNums, uint64_t *binaryNums)
 {
-	uint64_t tempNumber = *countNums;
+	uint64_t tempNumber = countNums;
 	uint64_t multiplier = 1; // Множитель для формирования правильных разрядов (1, 10, 100...)
 	*binaryNums = 0; // Обнуляем перед записью
 
@@ -327,10 +318,11 @@ void SetBinNumber(uint16_t *countNums, uint64_t *binaryNums)
 		tempNumber >>= 1; // Сдвигаем число вправо
 	}
 }
-// Преодразования из бинарного в десятичный вид 
-uint16_t Binary_to_Decimal(uint64_t *binaryNums)
+
+//Перевод числа из 2-чного в 10-чный
+uint16_t Binary_to_Decimal(uint64_t binaryNums)
 { 
-	uint64_t num = *binaryNums; 
+	uint64_t num = binaryNums; 
 	int dec_value = 0; 
   
 	// Инициализируем базовое значение равным 1,
@@ -355,23 +347,14 @@ uint16_t Binary_to_Decimal(uint64_t *binaryNums)
 	return dec_value; 
 } 
 
-// Преобразования десятичного числа в три шестнадцатеричных разряда
-void DecimalHexadecimal(uint16_t decimal, uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum) {
-	*firstNum = decimal % 16; // Определяем младший разряд (единицы в шестнадцатеричной системе)
-	*secondNum = (decimal / 16) % 16; // Определяем средний разряд (число делится на 16 и берётся остаток)
-	*thirdNum = (decimal / 256) % 16; // Определяем старший разряд (число делится на 256 и берётся остаток)
-}
-
-//-------------------------------------------------------------------------
 
 //------------------------ Установка цвета для лампочек-----------------
 
 //Зажигание лампочек в зависемости от двоичного числа 
-void Set_LED_12_Bit(uint64_t *binaryNums)
+void Set_LED_12_Bit(uint64_t binaryNums)
 {
-	// Создаем массив с пинами
 	uint16_t pins[] = { S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12 }; // GPIO пины для лампочек
-	uint64_t tempNums = *binaryNums;
+	uint64_t tempNums = binaryNums;
     
 	for (int i = 11; i >= 0; --i) // Перебираем массив с конца
 	{
@@ -401,12 +384,12 @@ void SetFirstBit(uint8_t *firstBit)
 			// Инвертируем состояние
 			if (*firstBit == 0)
 			{
-				(*firstBit) = 1;
+				*firstBit = 1;
 				HAL_GPIO_WritePin(GPIOB, S_0_1, GPIO_PIN_SET);
 			}
 			else
 			{
-				(*firstBit) = 0;
+				*firstBit = 0;
 				HAL_GPIO_WritePin(GPIOB, S_0_1, GPIO_PIN_RESET);
 			}
 
@@ -432,12 +415,12 @@ void SetSeconsBit(uint8_t *secondBit)
 			// Инвертируем состояние
 			if (*secondBit == 0)
 			{
-				(*secondBit) = 1;
+				*secondBit = 1;
 				HAL_GPIO_WritePin(GPIOB, S_0_2, GPIO_PIN_SET);
 			}
 			else
 			{
-				(*secondBit) = 0;
+				*secondBit = 0;
 				HAL_GPIO_WritePin(GPIOB, S_0_2, GPIO_PIN_RESET);
 			}
 
@@ -463,12 +446,12 @@ void SetThirdBit(uint8_t *thirdBit)
 			// Инвертируем состояние
 			if (*thirdBit == 0)
 			{
-				(*thirdBit) = 1;
+				*thirdBit = 1;
 				HAL_GPIO_WritePin(GPIOB, S_0_3, GPIO_PIN_SET);
 			}
 			else
 			{
-				(*thirdBit) = 0;
+				*thirdBit = 0;
 				HAL_GPIO_WritePin(GPIOB, S_0_3, GPIO_PIN_RESET);
 			}
 
@@ -494,12 +477,12 @@ void SetFourthBit(uint8_t *fourthBit)
 			// Инвертируем состояние
 			if (*fourthBit == 0)
 			{
-				(*fourthBit) = 1;
+				*fourthBit = 1;
 				HAL_GPIO_WritePin(GPIOC, S_0_4, GPIO_PIN_SET);
 			}
 			else
 			{
-				(*fourthBit) = 0;
+				*fourthBit = 0;
 				HAL_GPIO_WritePin(GPIOC, S_0_4, GPIO_PIN_RESET);
 			}
 
@@ -517,8 +500,6 @@ void SetFourthBit(uint8_t *fourthBit)
 
 // В зависемости от числа зажигаются определенный набор сегментов на экране 
 void set_number(int n){ 
-	
-	
     HAL_GPIO_WritePin(GPIOA, A | B | C | D| G |E | F | DP, GPIO_PIN_RESET);
     if (n==0) 
     { 
@@ -560,32 +541,6 @@ void set_number(int n){
     {
     HAL_GPIO_WritePin(GPIOA, A | B | C | D| G | F , GPIO_PIN_SET);// 9 
     }
-	if (n == 10)
-	{
-		HAL_GPIO_WritePin(GPIOA, A | B | C |G  | F | E , GPIO_PIN_SET); // A 
-	}
-	if (n == 11)
-	{
-		HAL_GPIO_WritePin(GPIOA, A | B |C | D |G | F | E, GPIO_PIN_SET); // B
-	}
-	if (n == 12)  
-	{
-		HAL_GPIO_WritePin(GPIOA, A| D | F | E, GPIO_PIN_SET); // C
-	}
-	if (n == 13)
-	{
-		HAL_GPIO_WritePin(GPIOA, A |B | F | E | C , GPIO_PIN_SET); // D
-	}
-	if (n == 14)
-	{
-		HAL_GPIO_WritePin(GPIOA, A | G | D | F | E, GPIO_PIN_SET); // E
-	}
-	if (n == 15)
-	{
-		HAL_GPIO_WritePin(GPIOA, A | G | F | E, GPIO_PIN_SET); // F
-	}
- 
-
 }
 // Устнановка индикации в определенную ячейку на экране 
 void set_dig(int n) {
@@ -602,39 +557,31 @@ void set_dig(int n) {
 
 }
 // печать числа на экран 
-void print_number(uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum) {
-	// Проверяем переполнение первого разряда
-	if (*firstNum > 15) {
-		*firstNum = 0;
-		(*secondNum)++; //() нужны что бы увиличивать число а не указатель
-	}
+void print_number(int n) {
+  
+	int  n1 = 0, n2 = 0, n3 = 0;
+	n1 = n % 10; 
+	
+	n2 = (n / 10) % 10; 
 
-	// Проверяем переполнение второго разряда
-	if (*secondNum > 15) {  
-		*secondNum = 0;
-		(*thirdNum)++; //() нужны что бы увиличивать число а не указатель
-	}
+	n3 = (n / 100) % 10;
 
-	// Проверяем переполнение третьего разряда
-	if (*thirdNum > 15) {  
-		*thirdNum = 0; // Полный сброс всех разрядов
-	}
-
-	// Выводим третью цифру (слева)
-	set_dig(1);
-	set_number(*thirdNum);
-	HAL_Delay(5);
-
-	// Выводим вторую цифру (по центру)
-	set_dig(2);
-	set_number(*secondNum);
-	HAL_Delay(5);
-
-	// Выводим первую цифру (справа)
-	set_dig(3);
-	set_number(*firstNum);
-	HAL_Delay(5);
-}
+    set_dig(1);
+    set_number(n3);
+	
+    HAL_Delay(5);
+	
+    set_dig(2);
+    set_number(n2);
+	
+    HAL_Delay(5);
+	
+    set_dig(3);
+    set_number(n1);
+	
+    HAL_Delay(5);
+	
+} 
 
 
 #endif /* __7_3_LED_ENABLED */
