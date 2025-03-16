@@ -301,19 +301,9 @@ void test(uint16_t delay) {
 }
 //-------------------------------------------------------------------------
 
-//Заменяем у бинарного числа последние 4 цифры в зависимости от нажатых кнопок
-void SwapLast_4_Bit(uint64_t *binaryNums, uint8_t *firstBit, uint8_t *secondBit, uint8_t *thirdBit, uint8_t *fourthBit)
-{
-	
-	// Убираем последние 4 цифры
-	*binaryNums /= 10000; 
-
-	// Добавляем новые 4 цифры
-	*binaryNums = ((*binaryNums) * 10000) + ((*firstBit) * 1000) + ((*secondBit) * 100) + ((*thirdBit) * 10) + (*fourthBit);
-}
 
 //Из числа переводим в битную последовательност		//Передаем не число а указатель на место хранения числа 
-void SetBinNumber(uint16_t *countNums, uint64_t *binaryNums)
+void SetBinNumber(uint64_t *countNums, uint64_t *binaryNums)
 {
 	uint64_t tempNumber = *countNums;
 	uint64_t multiplier = 1; // Множитель для формирования правильных разрядов (1, 10, 100...)
@@ -328,18 +318,18 @@ void SetBinNumber(uint16_t *countNums, uint64_t *binaryNums)
 	}
 }
 // Преодразования из бинарного в десятичный вид 
-uint16_t Binary_to_Decimal(uint64_t *binaryNums)
+uint64_t Binary_to_Decimal(uint64_t *binaryNums)
 { 
 	uint64_t num = *binaryNums; 
-	int dec_value = 0; 
+	uint64_t dec_value = 0; 
   
 	// Инициализируем базовое значение равным 1,
-	int base = 1; 
+	uint64_t base = 1; 
   
-	int temp = num; 
+	uint64_t temp = num; 
 	// Извлечение последней цифры двоичного числа
 	while (temp) { 
-		int last_digit = temp % 10; 
+		uint64_t last_digit = temp % 10; 
 		// Удаление последней цифры из двоичного числа
 		temp = temp / 10; 
   
@@ -355,23 +345,26 @@ uint16_t Binary_to_Decimal(uint64_t *binaryNums)
 	return dec_value; 
 } 
 
-// Преобразования десятичного числа в три шестнадцатеричных разряда
-void DecimalHexadecimal(uint16_t decimal, uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum) {
-	*firstNum = decimal % 16; // Определяем младший разряд (единицы в шестнадцатеричной системе)
-	*secondNum = (decimal / 16) % 16; // Определяем средний разряд (число делится на 16 и берётся остаток)
-	*thirdNum = (decimal / 256) % 16; // Определяем старший разряд (число делится на 256 и берётся остаток)
+// Преобразования числа в три шестнадцатеричных разряда с помощью побитового сдвига. 
+void DecimalHexadecimal(uint64_t decimal, uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum) {
+	*firstNum  = decimal & 0xF; // Младший разряд 
+	*secondNum = (decimal >> 4) & 0xF; // Средний разряд 
+	*thirdNum  = (decimal >> 8) & 0xF; // Старший разряд 
 }
+
+
+
 
 //-------------------------------------------------------------------------
 
 //------------------------ Установка цвета для лампочек-----------------
 
 //Зажигание лампочек в зависемости от двоичного числа 
-void Set_LED_12_Bit(uint64_t *binaryNums)
+void Set_LED_12_Bit(uint64_t binaryNums)
 {
 	// Создаем массив с пинами
 	uint16_t pins[] = { S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12 }; // GPIO пины для лампочек
-	uint64_t tempNums = *binaryNums;
+	uint64_t tempNums = binaryNums;
     
 	for (int i = 11; i >= 0; --i) // Перебираем массив с конца
 	{
@@ -603,23 +596,7 @@ void set_dig(int n) {
 }
 // печать числа на экран 
 void print_number(uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum) {
-	// Проверяем переполнение первого разряда
-	if (*firstNum > 15) {
-		*firstNum = 0;
-		(*secondNum)++; //() нужны что бы увиличивать число а не указатель
-	}
-
-	// Проверяем переполнение второго разряда
-	if (*secondNum > 15) {  
-		*secondNum = 0;
-		(*thirdNum)++; //() нужны что бы увиличивать число а не указатель
-	}
-
-	// Проверяем переполнение третьего разряда
-	if (*thirdNum > 15) {  
-		*thirdNum = 0; // Полный сброс всех разрядов
-	}
-
+	
 	// Выводим третью цифру (слева)
 	set_dig(1);
 	set_number(*thirdNum);
@@ -635,6 +612,9 @@ void print_number(uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum) {
 	set_number(*firstNum);
 	HAL_Delay(5);
 }
+
+
+
 
 
 #endif /* __7_3_LED_ENABLED */

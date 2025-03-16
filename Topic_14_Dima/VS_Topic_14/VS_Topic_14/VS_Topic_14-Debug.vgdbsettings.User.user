@@ -37,6 +37,7 @@
       </oo>
       <oo>
         <a>countNums</a>
+        <h>com.sysprogs.types.builtin.UInt64</h>
         <e>true</e>
         <b>
           <ComparisonMode>Equals</ComparisonMode>
@@ -48,6 +49,7 @@
       </oo>
       <oo>
         <a>firstNum</a>
+        <h>com.sysprogs.types.builtin.UInt8</h>
         <e>true</e>
         <b>
           <ComparisonMode>Equals</ComparisonMode>
@@ -59,6 +61,7 @@
       </oo>
       <oo>
         <a>secondNum</a>
+        <h>com.sysprogs.types.builtin.UInt8</h>
         <e>true</e>
         <b>
           <ComparisonMode>Equals</ComparisonMode>
@@ -70,6 +73,7 @@
       </oo>
       <oo>
         <a>thirdNum</a>
+        <h>com.sysprogs.types.builtin.UInt8</h>
         <e>true</e>
         <b>
           <ComparisonMode>Equals</ComparisonMode>
@@ -81,6 +85,7 @@
       </oo>
       <oo>
         <a>binaryNums</a>
+        <h>com.sysprogs.types.builtin.UInt64</h>
         <e>true</e>
         <b>
           <ComparisonMode>Equals</ComparisonMode>
@@ -103,6 +108,76 @@
       </oo>
       <oo>
         <a>decimalNum</a>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>firstBit</a>
+        <h>com.sysprogs.types.builtin.UInt8</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>secondBit</a>
+        <h>com.sysprogs.types.builtin.UInt8</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>thirdBit</a>
+        <h>com.sysprogs.types.builtin.UInt8</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>fourthBit</a>
+        <h>com.sysprogs.types.builtin.UInt8</h>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>hex</a>
+        <e>true</e>
+        <b>
+          <ComparisonMode>Equals</ComparisonMode>
+          <Enabled>false</Enabled>
+        </b>
+        <c>false</c>
+        <d>false</d>
+        <g>false</g>
+      </oo>
+      <oo>
+        <a>testi</a>
         <e>true</e>
         <b>
           <ComparisonMode>Equals</ComparisonMode>
