@@ -95,11 +95,11 @@ int main(void)
 	
 	Test_12_LED(50); //Самоиндикация 12 лампочек
 	
-	// Число в 10-чном представление 
-	uint16_t countNums = 0;
+	// Число для помощи формирования 2-чного
+	uint64_t countNums = 0;
 	// Число в 2-чном представление 
-	uint64_t binaryNums = 0 ;
-	
+	uint64_t binaryNums = 0;
+
 	// 1-ый бит измененый 
 	uint8_t firstBit = 0;
 	// 2-ой бит измененый 
@@ -109,86 +109,109 @@ int main(void)
 	// 4-ий бит измененый 
 	uint8_t fourthBit = 0;
 	
-	//Первое число в 8 ричном формате
+	//Первое число в 16 ричном формате
 	uint8_t firstNum = 0;
-	//Второе число в 8 ричном формате
+	//Второе число в 16 ричном формате
 	uint8_t secondNum = 0;  
-	//Третье число в 8 ричном формате
+	//Третье число в 16 ричном формате
 	uint8_t thirdNum = 0;
 	
-  /* USER CODE END 2 */
+	
+	/* USER CODE END 2 */
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
+	/* Infinite loop */
+	/* USER CODE BEGIN WHILE */
 
-    // 1 отпущина 0 нажата
-  while (1)
-  {
+	  // 1 отпущина 0 нажата
+	while (1)
+	{
 	  
-    /* USER CODE END WHILE */
+		/* USER CODE END WHILE */
+
+		// Вывод числа на экран
+		print_number(&firstNum, &secondNum, &thirdNum);
 	  
-	  // Задаем число в диапазоне от 0 до 777 и выводем его динамически в время изменения числа 
+		// Задаем 1 бит и зажигаем 1 лампачку с помощью BUTTON_1
+		SetFirstBit(&firstBit);
 	  
-	  print_number(&firstNum, &secondNum, &thirdNum); 
-
-
-	  while (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == 0)
-	  {
-		  HAL_Delay(10); // Задержка для стабилизации
-
-		  countNums++;  
-
-		  firstNum++;
-		  // Вывод числа в восмеричном формате
-		  print_number(&firstNum, &secondNum, &thirdNum); 
-
-		  // Ограничение до 777
-		  if (countNums == 777)
-		  {
-			  countNums = 0;
-		  }
-
-		  // Преобразуем число в двоичный формат и сохраняем в binaryNums
-		  SetBinNumber(&countNums, &binaryNums);
-	  }
+		// Задаем 2 бит и зажигаем 2 лампачку с помощью BUTTON_2
+		SetSeconsBit(&secondBit);
 	  
-	  //Пишем &(ссылку) для того что бы можно было приянть указатель на переменную 
-
-	  // Задаем 1 бит и зажигаем 1 лампачку с помощью BUTTON_1
-	  SetFirstBit(&firstBit);
-	  
-	  // Задаем 2 бит и зажигаем 2 лампачку с помощью BUTTON_2
-	  SetSeconsBit(&secondBit);
-	  
-	  // Задаем 3 бит и зажигаем 3 лампачку с помощью BUTTON_3
-	  SetThirdBit(&thirdBit);
+		// Задаем 3 бит и зажигаем 3 лампачку с помощью BUTTON_3
+		SetThirdBit(&thirdBit);
 	 
-	  // Задаем 4 бит и зажигаем 4 лампачку с помощью BUTTON_4
-	  SetFourthBit(&fourthBit);
+		// Задаем 4 бит и зажигаем 4 лампачку с помощью BUTTON_4
+		SetFourthBit(&fourthBit);
 	  
-	  // Если любая BUTTON_1 - BUTTON_4 была нажата , то происходит добавление битов к числу (в зависемости от нажатой кнопки) 
-	  if (firstBit != 0 || secondBit != 0 || thirdBit != 0 || fourthBit != 0)
-	  {
-		  //Меняем последние 4 бита в числе 
-		  SwapLast_4_Bit(&binaryNums, &firstBit, &secondBit, &thirdBit, &fourthBit);
-		  //Обновляем 10-чиное число после ввода 4 бит в конец
-		  countNums =  Binary_to_Decimal(&binaryNums);
-		  //Перевод из 10-тичного в 16-ричный после установки бит
-		  DecimalOctal(countNums, &firstNum, &secondNum, &thirdNum);
+		
+		if (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == 0)
+		{
 		 
-		  //Вывод числа на экран
-		  print_number(&firstNum, &secondNum, &thirdNum); 
+			HAL_Delay(50);
+			//Гасим светодиоды
+			HAL_GPIO_WritePin(GPIOB, S_0_1, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOB, S_0_2, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOB, S_0_3, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOC, S_0_4, GPIO_PIN_RESET);
+		  
+			// Формируем 4-битное число из заданных битов
+			uint64_t newBits = (firstBit << 3) | (secondBit << 2) | (thirdBit << 1) | fourthBit;
 
-	  }
+		  
+			// Сдвигаем исходное число на 4 бита влево и добавляем новые биты  числу
+			countNums = (countNums << 4) | newBits;
+		  
+			//Формируем в переменную binaryNums битную последовательность 
+			SetBinNumber(&countNums, &binaryNums);
+		  
+			//Обнуляем заданные биты 
+			firstBit = 0;
+			secondBit = 0;
+			thirdBit = 0;
+			fourthBit = 0;
+
+			//Обновляем число в зависеммости от 2-чного
+			countNums = Binary_to_Decimal(&binaryNums);
+			
+			//Переводим число в 8-ричный формат 
+			DecimalOctal(countNums, &firstNum, &secondNum, &thirdNum);
+
+
+		  // Ограничение до 511 или до 111111111 что равносильно 777 
+			if (countNums > 511 || binaryNums > 111111111)
+			{
+				countNums = 0;
+				binaryNums = 0;
+				
+				firstNum = 0;
+				secondNum = 0;
+				thirdNum = 0;
+				
+				
+			}
+					
+			//Вывод числа на экран			
+			print_number(&firstNum, &secondNum, &thirdNum);
+
+			// Для того что бы при нажатие на кнопку BUTTON_0 if не выполнялся несколько раз
+			while (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == 0)
+			{
+				HAL_Delay(10);
+ 
+			}
+		}
+
+	    //Зажигаем 12 лампочек в зависеммости от заданого бинарного числа 
+		Set_LED_12_Bit(&binaryNums);
 	  
-	  // В зависеммости от бита загорается нужная лампчока 
-	  Set_LED_12_Bit(&binaryNums);
+		//Вывод числа на экран в 10-чном виде 
+		print_number(&firstNum, &secondNum, &thirdNum);
 	  
-	  
-    /* USER CODE BEGIN 3 */
-  }
-  /* USER CODE END 3 */
+		/* USER CODE BEGIN 3 */
+	}
+	/* USER CODE END 3 */
 }
+
 
 /**
   * @brief System Clock Configuration

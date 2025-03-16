@@ -69,12 +69,12 @@ void Test_12_LED(uint16_t delay);
 void SwapLast_4_Bit(uint64_t *binaryNums, uint8_t *firstBit, uint8_t *secondBit, uint8_t *thirdBit, uint8_t *fourthBit);
 
 //Из числа переводим в битную последовательност		//(*)Передаем не число а указатель на место хранения числа 
-void SetBinNumber(uint16_t *countNums, uint64_t *binaryNums);
+void SetBinNumber(uint64_t *countNums, uint64_t *binaryNums);
 
 // Перевод из бинарного числа в двоичный 
-uint16_t Binary_to_Decimal(uint64_t *binaryNums);
+uint64_t Binary_to_Decimal(uint64_t *binaryNums);
 
-void DecimalOctal(uint16_t countNums, uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum);
+void DecimalOctal(uint64_t countNums, uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum);
 //------------------------ Установка цвета для лампочек----------------- 
 
 //Зажигание лампочек в зависемости от двоичного числа 

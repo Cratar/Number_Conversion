@@ -301,19 +301,8 @@ void test(uint16_t delay) {
 }
 //-------------------------------------------------------------------------
 
-//Заменяем у бинарного числа последние 4 цифры в зависимости от нажатых кнопок
-void SwapLast_4_Bit(uint64_t *binaryNums, uint8_t *firstBit, uint8_t *secondBit, uint8_t *thirdBit, uint8_t *fourthBit)
-{
-	
-	// Убираем последние 4 цифры
-	*binaryNums /= 10000; 
-
-	// Добавляем новые 4 цифры
-	*binaryNums = ((*binaryNums) * 10000) + ((*firstBit) * 1000) + ((*secondBit) * 100) + ((*thirdBit) * 10) + (*fourthBit);
-}
-
 //Из числа переводим в битную последовательност		//Передаем не число а указатель на место хранения числа 
-void SetBinNumber(uint16_t *countNums, uint64_t *binaryNums)
+void SetBinNumber(uint64_t *countNums, uint64_t *binaryNums)
 {
 	uint64_t tempNumber = *countNums;
 	uint64_t multiplier = 1; // Множитель для формирования правильных разрядов (1, 10, 100...)
@@ -328,15 +317,15 @@ void SetBinNumber(uint16_t *countNums, uint64_t *binaryNums)
 	}
 }
 // Преодразования из бинарного в десятичный вид 
-uint16_t Binary_to_Decimal(uint64_t *binaryNums)
+uint64_t Binary_to_Decimal(uint64_t *binaryNums)
 { 
 	uint64_t num = *binaryNums; 
-	int dec_value = 0; 
+	uint64_t dec_value = 0; 
   
 	// Инициализируем базовое значение равным 1,
-	int base = 1; 
+	uint64_t base = 1; 
   
-	int temp = num; 
+	uint64_t temp = num; 
 	// Извлечение последней цифры двоичного числа
 	while (temp) { 
 		int last_digit = temp % 10; 
@@ -355,7 +344,7 @@ uint16_t Binary_to_Decimal(uint64_t *binaryNums)
 	return dec_value; 
 } 
 //Переводим число в 8-ричный формат 
-void DecimalOctal(uint16_t countNums, uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum) {
+void DecimalOctal(uint64_t countNums, uint8_t *firstNum, uint8_t *secondNum, uint8_t *thirdNum) {
 	*firstNum = countNums % 8; // Младший разряд (единицы в восьмеричной системе)
 	*secondNum = (countNums / 8) % 8; // Средний разряд (число делится на 8 и берётся остаток)
 	*thirdNum = (countNums / 64) % 8; // Старший разряд (число делится на 64 и берётся остаток)
