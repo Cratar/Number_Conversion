@@ -1,0 +1,40 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\VS_Topic_13\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9E603E3C-EB6A-4E61-B503-87AA4D43F824}|VS_Topic_13\\VS_Topic_13.vcxproj|D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Src\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.c",
+              "DocumentMoniker": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Src\\main.c",
+              "RelativeDocumentMoniker": "..\\Core\\Src\\main.c",
+              "ToolTip": "D:\\COD_Microproc\\Number_Conversion\\Topic_13_Vlad\\Topic_13\\Core\\Src\\main.c",
+              "RelativeToolTip": "..\\Core\\Src\\main.c",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAQwJoAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-03-15T16:39:28.665Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
