@@ -403,7 +403,7 @@ void SetFirstBit(uint8_t *firstBit)
 	}
 }
 //Зажигание 2 лампочки при нажатие на BUTTON_2
-void SetSeconsBit(uint8_t *secondBit)
+void SetSecondBit(uint8_t *secondBit)
 {
 	if (HAL_GPIO_ReadPin(GPIOA, BUTTON_2) == GPIO_PIN_RESET) // Проверяем нажатие кнопки
 	{

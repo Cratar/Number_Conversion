@@ -63,41 +63,41 @@ static void MX_GPIO_Init(void);
   */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
+	/* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
+	/* USER CODE END 1 */
 
-  /* MCU Configuration--------------------------------------------------------*/
+	/* MCU Configuration--------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+	HAL_Init();
 
-  /* USER CODE BEGIN Init */
+	/* USER CODE BEGIN Init */
 
-  /* USER CODE END Init */
+	/* USER CODE END Init */
 
-  /* Configure the system clock */
-  SystemClock_Config();
+	/* Configure the system clock */
+	SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
+	/* USER CODE BEGIN SysInit */
 
-  /* USER CODE END SysInit */
+	/* USER CODE END SysInit */
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
+	/* Initialize all configured peripherals */
+	MX_GPIO_Init();
 	
-  /* USER CODE BEGIN 2 */
+	/* USER CODE BEGIN 2 */
 	
-    test(50); //Самоиндикация экрана
+	test(50); //Самоиндикация экрана
 	
 	Test_4_LED(50); //Самоиндикация 4 лампочек
 	
 	Test_12_LED(50); //Самоиндикация 12 лампочек
 	
 	// Число в 10-чном представление 
-	uint16_t countNums = 0;
+	int64_t countNums = 0;
 	// Число в 2-чном представление 
-	uint64_t binaryNums = 0 ;
+	uint64_t binaryNums = 0;
 	
 	// 1-ый бит измененый 
 	uint8_t firstBit = 0;
@@ -107,92 +107,120 @@ int main(void)
 	uint8_t thirdBit = 0;
 	// 4-ий бит измененый 
 	uint8_t fourthBit = 0;
+
+	int time = 0; // Переменная для подсчёта времени удержания кнопки
+	int mode = 0; // Режим работы: 0 - увеличение числа, 1 - уменьшение
 	
-  /* USER CODE END 2 */
+	int resetFlag = 0; // флага при выходе из режима 2
+	/* USER CODE END 2 */
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
+	/* Infinite loop */
+	/* USER CODE BEGIN WHILE */
 
-    // 1 отпущина 0 нажата
-  while (1)
-  {
-	  
-    /* USER CODE END WHILE */
+	  // 1 отпущина 0 нажата
+	while (1)
+	{
+		/* USER CODE END WHILE */
 
-	  // Задаем число в диапазоне от 0 до 999 и выводем его динамически в время изменения числа 
-	  print_number(countNums);
-	  
-	  // Задаем 1 бит и зажигаем 1 лампачку с помощью BUTTON_1
-	  SetFirstBit(&firstBit);
-	  
-	  // Задаем 2 бит и зажигаем 2 лампачку с помощью BUTTON_2
-	  SetSeconsBit(&secondBit);
-	  
-	  // Задаем 3 бит и зажигаем 3 лампачку с помощью BUTTON_3
-	  SetThirdBit(&thirdBit);
-	 
-	  // Задаем 4 бит и зажигаем 4 лампачку с помощью BUTTON_4
-	  SetFourthBit(&fourthBit);
-	  
-	  // Если число достигла лимита в 999 то сбрасываем все до 0
-	  if (countNums >= 999)
-	  {
-		  countNums = 0;
-		  binaryNums = 0;
-		  
-	  }
-	  
-	  if (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == 0)
-	  {
-		 
-		  HAL_Delay(50);
-		//Гасим светодиоды
-		  HAL_GPIO_WritePin(GPIOB, S_0_1, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(GPIOB, S_0_2, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(GPIOB, S_0_3, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(GPIOC, S_0_4, GPIO_PIN_RESET);
-		  
-		  // Формируем 4-битное число из заданных битов
-		  uint16_t newBits = (firstBit << 3) | (secondBit << 2) | (thirdBit << 1) | fourthBit;
+		print_number(countNums);
 
-		  
-		  // Сдвигаем исходное число на 4 бита влево и добавляем новые биты  к 10-тичному числу
-		  countNums = (countNums << 4) | newBits;
-		  
-		  //Формируем в переменную binaryNums битную последовательность 
-		  SetBinNumber(countNums, &binaryNums);
-		  
-		  //Обнуляем заданные биты
-		  firstBit = 0;
-		  secondBit = 0;
-		  thirdBit = 0;
-		  fourthBit = 0;
+		// Обработка удержания кнопки BUTTON_0 для смены режима
+		if (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == 0) {
+			time = 0;
+			while (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == 0) {
+				print_number(countNums);
+				HAL_Delay(15); // Задержка для измерения времени удержания
+				time++;
+			}
+        
+			if (time * 15 > 2000) {
+				// Если кнопка удерживалась более 2000 мс
+				mode++;
+				if (mode > 2) mode = 0;
+            
+				// Сброс битов при переходе в режим 2
+				if (mode == 2) {
+					firstBit = 0;
+					secondBit = 0;
+					thirdBit = 0;
+					fourthBit = 0;
+				}
+			}
+			else {
+				// Короткое нажатие - обработка в зависимости от режима
+				if (mode == 0) {
+					// Режим 0: увеличение
+					if (countNums >= 999) countNums = 0;
+					else countNums++;
+					SetBinNumber(countNums, &binaryNums);
+				}
+				else if (mode == 1) {
+					// Режим 1: уменьшение
+					if (countNums <= 0) countNums = 999;
+					else countNums--;
+					SetBinNumber(countNums, &binaryNums);
+				}
+				// В режиме 2 короткое нажатие BUTTON_0 не делает ничего
+			}
+		}
 
-		  //Обновляем 10-чное число в зависеммости от 2-чного
-		  countNums = Binary_to_Decimal(binaryNums);
-		  
-		  //Вывод числа на экран 
-		  print_number(countNums);
+		// Обработка режима 2
+		if (mode == 2) {
+			// Динамический вывод числа
+			print_number(countNums);
 
-		  // Для того что бы при нажатие на кнопку BUTTON_0 if не выполнялся несколько раз
-		  while (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == 0)
-		  {
-			  HAL_Delay(10);
- 
-		  }
-	  }
+			// Установка битов через кнопки
+			SetFirstBit(&firstBit);
+			SetSecondBit(&secondBit); // Исправлено название
+			SetThirdBit(&thirdBit);
+			SetFourthBit(&fourthBit);
 
-	//Зажигаем 12 лампочек в зависеммости от заданого бинарного числа 
-	  Set_LED_12_Bit(binaryNums);
-	  
-	  //Вывод числа на экран в 10-чном виде 
-	  print_number(countNums);
-	  
-    /* USER CODE BEGIN 3 */
-  }
-  /* USER CODE END 3 */
+			// Обработка подтверждения (BUTTON_0)
+			if (HAL_GPIO_ReadPin(GPIOA, BUTTON_0) == 0) {
+				HAL_Delay(50); // Задержка для антидребезга (лучше заменить на таймер)
+        
+				// Гасим светодиоды
+				HAL_GPIO_WritePin(GPIOB, S_0_1, GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(GPIOB, S_0_2, GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(GPIOB, S_0_3, GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(GPIOC, S_0_4, GPIO_PIN_RESET);
+
+				// Формируем 4-битное число
+				uint16_t newBits = (firstBit << 3) | (secondBit << 2) | (thirdBit << 1) | fourthBit;
+
+				// Добавляем новые биты к числу
+				countNums = (countNums << 4) | newBits;
+				SetBinNumber(countNums, &binaryNums);
+
+				// Сброс битов
+				firstBit = 0;
+				secondBit = 0;
+				thirdBit = 0;
+				fourthBit = 0;
+
+				// Обновляем десятичное число
+				countNums = Binary_to_Decimal(binaryNums);
+				print_number(countNums);
+			}
+
+			// Сброс при достижении 999
+			if (countNums >= 999) {
+				countNums = 0;
+				binaryNums = 0;
+			}
+		}
+		else {
+			resetFlag = 0; // Сброс флага при выходе из режима 2
+		}
+
+		// Обновление числа и светодиодов
+		countNums = Binary_to_Decimal(binaryNums);
+		print_number(countNums);
+		Set_LED_12_Bit(binaryNums);
+		
+		/* USER CODE END 3 */
+	}
 }
-
 /**
   * @brief System Clock Configuration
   * @retval None
