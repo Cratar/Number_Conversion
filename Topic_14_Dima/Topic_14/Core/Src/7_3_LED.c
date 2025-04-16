@@ -303,9 +303,9 @@ void test(uint16_t delay) {
 
 
 //Из числа переводим в битную последовательност		//Передаем не число а указатель на место хранения числа 
-void SetBinNumber(uint64_t *countNums, uint64_t *binaryNums)
+void SetBinNumber(int64_t *countNums, uint64_t *binaryNums)
 {
-	uint64_t tempNumber = *countNums;
+	int64_t tempNumber = *countNums;
 	uint64_t multiplier = 1; // Множитель для формирования правильных разрядов (1, 10, 100...)
 	*binaryNums = 0; // Обнуляем перед записью
 
